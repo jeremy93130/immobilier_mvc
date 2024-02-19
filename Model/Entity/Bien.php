@@ -21,13 +21,14 @@ class Bien extends BaseEntity
     private $zone;
     private $ascenseur;
     private $etage;
-   
+    private $image;
+
     public function getTitre()
     {
         return $this->titre;
     }
 
-    
+
     public function setTitre($titre)
     {
         $this->titre = $titre;
@@ -202,6 +203,17 @@ class Bien extends BaseEntity
     {
         $this->etage = $etage;
 
+        return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
         return $this;
     }
 }

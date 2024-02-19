@@ -109,7 +109,6 @@ class BaseRepository
         }
         Sess::addMessage("danger", "Erreur SQL");
         return null;
-
     }
     public function remove(BaseEntity $tableName)
     {

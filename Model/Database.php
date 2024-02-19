@@ -6,7 +6,7 @@ class Database
 {
     // connetion à la base de données
     private $host = "localhost";
-    private $db_name = "app_shopping";
+    private $db_name = "immobilier";
     private $username = "root";
     private $password = "";
     private $connexion = null;
@@ -19,7 +19,6 @@ class Database
             $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
             $this->connexion = $pdo;
-
         } catch (\PDOException $exception) {
             echo "Erreur de connetion : " . $exception->getMessage();
         }

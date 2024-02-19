@@ -19,23 +19,24 @@ class BienRepository extends BaseRepository
 
     public function insertBien(Bien $bien)
     {
-        $sql = "INSERT INTO bien (titre, code_postal,ville,nb_pieces,surface,style,parking,garage,prix_vente,loyer_HC,loyer_CC,consommation,zone,ascenseur,etage) VALUES (:titre, :code_postal, :ville, :nb_pieces, :surface, :style, :parking,:garage,:prix_vente,:loyer_HC,:loyer_CC,:consommation,:zone,:ascenseur,:etage)";
+        $sql = "INSERT INTO bien (titre, code_postal,ville,nb_pieces,surface,style,parking,garage,prix_vente,loyer_HC,loyer_CC,consommation,zone,ascenseur,etage,image) VALUES (:titre, :code_postal, :ville, :nb_pieces, :surface, :style, :parking,:garage,:prix_vente,:loyer_HC,:loyer_CC,:consommation,:zone,:ascenseur,:etage,:image)";
         $request = $this->dbConnection->prepare($sql);
-        $request->bindValue(":lastname", $bien->getTitre());
-        $request->bindValue(":firstname", $bien->getCodePostal());
-        $request->bindValue(":gender", $bien->getVille());
-        $request->bindValue(":email", $bien->getnbPieces());
-        $request->bindValue(":password", $bien->getSurface());
-        $request->bindValue(":birthday", $bien->getStyle());
-        $request->bindValue(":profession", $bien->getParking());
-        $request->bindValue(":salaire", $bien->getGarage());
-        $request->bindValue(":telephone", $bien->getPrixVente());
-        $request->bindValue(":admin", $bien->getLoyerHC());
-        $request->bindValue(":admin", $bien->getLoyerCC());
-        $request->bindValue(":admin", $bien->getConsommation());
-        $request->bindValue(":admin", $bien->getZone());
-        $request->bindValue(":admin", $bien->getAscenseur());
-        $request->bindValue(":admin", $bien->getEtage());
+        $request->bindValue(":titre", $bien->getTitre());
+        $request->bindValue(":code_postal", $bien->getCodePostal());
+        $request->bindValue(":ville", $bien->getVille());
+        $request->bindValue(":nb_pieces", $bien->getnbPieces());
+        $request->bindValue(":surface", $bien->getSurface());
+        $request->bindValue(":style", $bien->getStyle());
+        $request->bindValue(":parking", $bien->getParking());
+        $request->bindValue(":garage", $bien->getGarage());
+        $request->bindValue(":prix_vente", $bien->getPrixVente());
+        $request->bindValue(":loyer_HC", $bien->getLoyerHC());
+        $request->bindValue(":loyer_CC", $bien->getLoyerCC());
+        $request->bindValue(":consommation", $bien->getConsommation());
+        $request->bindValue(":zone", $bien->getZone());
+        $request->bindValue(":ascenseur", $bien->getAscenseur());
+        $request->bindValue(":etage", $bien->getEtage());
+        $request->bindValue(":image", $bien->getImage());
 
         $request = $request->execute();
         if ($request) {
@@ -48,10 +49,10 @@ class BienRepository extends BaseRepository
     }
 
 
-    public function updateUser(Bien $bien)
+    public function updateBien(Bien $bien)
     {
         $sql = "UPDATE bien 
-                SET titre = :titre, code_postal = :codePostal, ville = :ville, nb_pieces = :nbPieces,surface= :surface, style = :style, parking = :parking,garage = :garage, prix_vente = :prixVente,loyer_HC = :loyerHC, loyer_CC = :loyer_CC,consommation = :consommation, zone = :zone,ascenseur = :ascenseur, etage = :etage
+                SET titre = :titre, code_postal = :codePostal, ville = :ville, nb_pieces = :nbPieces,surface= :surface, style = :style, parking = :parking,garage = :garage, prix_vente = :prixVente,loyer_HC = :loyerHC, loyer_CC = :loyer_CC,consommation = :consommation, zone = :zone,ascenseur = :ascenseur, etage = :etage, image = :image
                 WHERE id = :id";
         $request = $this->dbConnection->prepare($sql);
         $request->bindValue(":id", $bien->getId());
@@ -70,6 +71,7 @@ class BienRepository extends BaseRepository
         $request->bindValue(":zone", $bien->getZone());
         $request->bindValue(":ascenseur", $bien->getAscenseur());
         $request->bindValue(":etage", $bien->getEtage());
+        $request->bindValue(":image", $bien->getImage());
         $request = $request->execute();
         if ($request) {
             Session::addMessage("success", "La mise à jour de l'utilisateur a bien été éffectuée");
