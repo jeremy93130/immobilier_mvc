@@ -1,33 +1,35 @@
 <?php
-// On génère une constante qui contiendra le chemin vers index.php
+require "inc/init.inc.php";
+// d_die($_SERVER);
+// d_die(ROOT);
+/* 
+URL: index.php?controller=user&method=update&id=32
+*/
+$admin = $_GET["doc"] ?? null;
+$controller = $_GET["controller"] ?? "home";
+$method = $_GET["method"] ?? "list";
+$id = $_GET["id"] ?? null;
 
-define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']));
+if (!empty($admin)) {
+    $classController = "Controller\\admin\\" . ucfirst($controller) . "Controller";
+} else {
+    $classController = "Controller\\" . ucfirst($controller) . "Controller";
+}
 
-// On charge le model et controller principaux
-require_once(ROOT.'app/Model.php');
-require_once(ROOT.'app/Controller.php');
+//$classController = "Controller\\" . ucfirst($controller) . "Controller";  // ucfirst: met la première lettre d'un string en majuscule
+/* $classController = "Controller\UserController" 
+   $method = "list"
+*/
 
-// On sépare les paramètres
-$params = explode('/', $_GET['p']);
+/* On peut instancier un objet en utilisant un string pour le nom de la class.
+    _⚠ le nom de la class doit être dans une variable pour pouvoir utiliser 'new'
+*/
 
-// Est-ce qu'un paramètre existe?
-if ($params[0] !== '') {
-    $controller = ucfirst($params[0]);
+try {
+    $controller = new $classController;
+    // $UserController->update($id);
 
-    $action = isset($params[1]) ? $params[1] : 'index';
-
-    require_once(ROOT.'controllers/'.$controller.'.php');
-
-    $controller = new $controller();
-
-    if(method_exists($controller,$action)){
-        unset($params[0]);
-        unset($params[1]);
-        call_user_func_array([$controller,$action],$params);
-    } else {
-        http_response_code(404);
-        echo "la page demandée n'existe pas !";
-    }
-}else{
-
+    $controller->$method($id);
+} catch (Exception $e) {
+    echo "Erreur : " . $e->getMessage();
 }
