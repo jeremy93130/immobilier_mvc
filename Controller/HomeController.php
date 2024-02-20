@@ -23,7 +23,7 @@ class HomeController extends BaseController
     {
         $biens = $this->bienRepository->findAll($this->bien);
         $this->render("home.html.php", [
-            "h1" => "Liste des Maisons/appartements",
+            "h1" => "Bien Chez Moi",
             "biens" => $biens
         ]);
     }

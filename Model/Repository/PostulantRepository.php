@@ -22,9 +22,9 @@ class PostulantRepository extends BaseRepository
     {
         $sql = "INSERT INTO postulant (nom, prenom, genre, email, mot_de_passe, date_naissance, profession, salaire, telephone, admin) VALUES (:nom, :prenom, :genre, :email, :password, :birthday, :profession,:salaire,:telephone,:admin)";
         $request = $this->dbConnection->prepare($sql);
-        $request->bindValue(":lastname", $user->getLastname());
-        $request->bindValue(":firstname", $user->getFirstname());
-        $request->bindValue(":gender", $user->getGender());
+        $request->bindValue(":nom", $user->getLastname());
+        $request->bindValue(":prenom", $user->getFirstname());
+        $request->bindValue(":genre", $user->getGender());
         $request->bindValue(":email", $user->getEmail());
         $request->bindValue(":password", $user->getPassword());
         $request->bindValue(":birthday", $user->getBirthday());
@@ -71,7 +71,7 @@ class PostulantRepository extends BaseRepository
         }
     }
 
-    public function loginUser($email, $password)
+    public function loginUser($email)
     {
         $request = $this->dbConnection->prepare("SELECT * FROM postulant WHERE email = :email");
         $request->bindParam(":email", $email);
@@ -79,13 +79,7 @@ class PostulantRepository extends BaseRepository
         if ($request->execute()) {
             if ($request->rowCount() == 1) {
                 $request->setFetchMode(\PDO::FETCH_CLASS, "Model\Entity\Postulant");
-                $user = $request->fetch();
-
-                if (password_verify($password, $user->getPassword())) {
-                    return $user;
-                } else {
-                    return false;
-                }
+                return $request->fetch();
             } else {
                 return false;
             }

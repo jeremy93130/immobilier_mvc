@@ -14,7 +14,7 @@ class Postulant extends BaseEntity
     private $job;
     private $salaire;
     private $telephone;
-    private $admin;
+    private $role;
 
 
     /**
@@ -133,7 +133,7 @@ class Postulant extends BaseEntity
     public function setBirthday($birthday)
     {
         $dateTime = new \DateTime($birthday);
-        $this->birthday = $dateTime->format('d-m-Y');
+        $this->birthday = $dateTime->format('Y-m-d');
 
         return $this;
     }
@@ -143,7 +143,7 @@ class Postulant extends BaseEntity
      */
     public function getRole()
     {
-        return $this->admin;
+        return $this->role;
     }
 
     /**
@@ -151,9 +151,10 @@ class Postulant extends BaseEntity
      *
      * @return  self
      */
-    public function setRole($admin)
+    public function setRole($role)
     {
-        $this->admin = $admin !== null ? $admin : "non";
+        // Assurez-vous que le rôle est soit "oui" ou "non"
+        $this->role = ($role !== null && ($role === "oui" || $role === "non")) ? $role : "non";
 
         return $this;
     }

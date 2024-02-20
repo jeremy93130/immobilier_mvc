@@ -3,7 +3,6 @@
 namespace Model\Repository;
 
 use Service\Session;
-use Model\Entity\Postulant;
 use Model\Entity\Bien_Postulant;
 
 class Postulant_BienRepository extends BaseRepository

@@ -19,10 +19,10 @@
     <title><?= $h1 ?? "Projet" ?></title>
 </head>
 
-<body class="bg-dark">
+<body>
     <div class="container-fluid">
         <div class="container">
-            <div class="row text-white">
+            <div class="row">
                 <?php include __DIR__ . "/nav.html.php"; ?>
 
                 <?php include dirname(__DIR__) . "/views/message.html.php"; ?>

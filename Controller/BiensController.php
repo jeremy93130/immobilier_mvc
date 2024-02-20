@@ -21,7 +21,7 @@ class BiensController extends BaseController
     }
     public function detailBien(BienRepository $bien,$id){
 
-        $bienDetail = $bien->findById($id);
+        $bienDetail = $bien->findById($bien,$id);
         $this->render('admin/biens.html.php',[
             'bien'
         ]);

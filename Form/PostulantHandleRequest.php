@@ -12,40 +12,15 @@ class PostulantHandleRequest extends BaseHandleRequest
 
     public function __construct()
     {
-        $this->userRepository  = new PostulantRepository;
+        $this->userRepository = new PostulantRepository;
     }
 
-    public function handleInsertForm(Postulant $postulant)
+    public function handleInsertFormPostulant(Postulant $postulant)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             extract($_POST);
             $errors = [];
-
-            // Vérification de la validité du formulaire
-            if (empty($surname)) {
-                $errors[] = "Le pseudo ne peut pas être vide";
-            }
-            if (strlen($surname) < 4) {
-                $errors[] = "Le pseudo doit avoir au moins 4 caractères";
-            }
-            if (strlen($surname) > 20) {
-                $errors[] = "Le pseudo ne peut avoir plus de 20 caractères";
-            }
-
-            if (!strpos($surname, " ") === false) {
-                $errors[] = "Les espaces ne sont pas autorisés pour le pseudo";
-            }
-
-            // Est-ce que le surname existe déjà dans la bdd ?
-
-            $userExists = $this->userRepository->checkUserExist($surname, $email);
-
-            //$userExists = $this->userRepository->findByAttributes($user, ["surname" => $surname]);
-
-            if ($userExists) {
-                $errors[] = "Le pseudo ou l'email existe déjà, veuillez en choisir un nouveau";
-            }
 
             if (!empty($lastname)) {
                 if (strlen($lastname) < 2) {
@@ -73,14 +48,14 @@ class PostulantHandleRequest extends BaseHandleRequest
                 $postulant->setGender($gender);
                 $postulant->setFirstname($firstname);
                 $postulant->setLastname($lastname);
-                $postulant->setTelephone($telephone);
+                $postulant->setTelephone($phone);
                 $postulant->setPassword($password);
                 $postulant->setEmail($email);
                 $postulant->setBirthday($birthday);
-                $postulant->setJob($job);
-                $postulant->setSalaire($salaire);
                 if (isset($role)) {
-                    $user->setRole($role);
+                    $postulant->setRole($role);
+                } else {
+                    $postulant->setRole('non');
                 }
                 return $this;
             }
@@ -89,13 +64,12 @@ class PostulantHandleRequest extends BaseHandleRequest
         }
     }
 
-    public function handleEditForm($postulant)
+    public function handleEditFormPostulant($postulant)
     {
     }
     public function handleLogin()
     {
         if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST["login"])) {
-
             extract($_POST);
             $errors = [];
             if (empty($email) || empty($password)) {
@@ -104,7 +78,8 @@ class PostulantHandleRequest extends BaseHandleRequest
                 /**
                  * @var Postulant
                  */
-                $user = $this->userRepository->loginUser($email,$password);
+                $user = $this->userRepository->loginUser($email);
+                var_dump($user);
                 if (empty($user)) {
                     $errors[] = "Il n'y a pas d'utilisateur avec cet email";
                 } else {

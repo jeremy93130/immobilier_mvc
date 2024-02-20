@@ -5,7 +5,7 @@
 require "autoload.php";
 session_start();
 include __DIR__ . "/functions.inc.php";
-define("ROOT", "/app_shopping/");
+define("ROOT", "/immobilier_mvc/");
 define("ROLE_USER", "ROLE_USER");
 define("ROLE_ADMIN", "ROLE_ADMIN");
 define("INSERTED", "Enregistrer");

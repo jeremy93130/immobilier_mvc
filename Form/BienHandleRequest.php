@@ -15,7 +15,7 @@ class BienHandleRequest extends BaseHandleRequest
         $this->bienRepository  = new BienRepository;
     }
 
-    public function handleInsertForm(Bien $bien)
+    public function handleInsertFormBien(Bien $bien)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 

@@ -49,7 +49,7 @@ abstract class Session
     public static function isAdmin(): bool
     {
         $user = self::getUserConnected();
-        if (!empty($user) && ($user->getRole() == ROLE_ADMIN)) {
+        if (!empty($user) && ($user->getRole() == "oui")) {
             return true;
         }
         return false;

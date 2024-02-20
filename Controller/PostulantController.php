@@ -39,7 +39,7 @@ class PostulantController extends BaseController
     public function new()
     {
         $user = $this->postulant;
-        $this->form->handleInsertForm($user);
+        $this->form->handleInsertFormPostulant($user);
 
         if ($this->form->isSubmitted() && $this->form->isValid()) {
 
@@ -50,7 +50,7 @@ class PostulantController extends BaseController
         $errors = $this->form->getErrorsForm();
 
         return $this->render("user/form.html.php", [
-            "h1" => "Ajouter un nouvel utilisateur",
+            "h1" => "Page d'inscription",
             "user" => $user,
             "errors" => $errors
         ]);
@@ -70,7 +70,7 @@ class PostulantController extends BaseController
              */
             $user = $this->getUser();
 
-            $this->form->handleEditForm($user);
+            $this->form->handleEditFormPostulant($user);
 
             if ($this->form->isSubmitted() && $this->form->isValid()) {
                 $this->postulantRepository->updateUser($user);
@@ -94,10 +94,10 @@ class PostulantController extends BaseController
 
                 $user = $this->postulant;
             } else {
-                $this->setMessage("danger",  "ERREUR 404 : la page demandé n'existe pas");
+                $this->setMessage("danger", "ERREUR 404 : la page demandé n'existe pas");
             }
         } else {
-            $this->setMessage("danger",  "ERREUR 404 : la page demandé n'existe pas");
+            $this->setMessage("danger", "ERREUR 404 : la page demandé n'existe pas");
         }
 
         $this->render("user/form.html.php", [
@@ -113,10 +113,10 @@ class PostulantController extends BaseController
             if (is_numeric($id)) {
                 $user = $this->postulant;
             } else {
-                $this->setMessage("danger",  "Erreur 404 : cette page n'existe pas");
+                $this->setMessage("danger", "Erreur 404 : cette page n'existe pas");
             }
         } else {
-            $this->setMessage("danger",  "Erreur 403 : vous n'avez pas accès à cet URL");
+            $this->setMessage("danger", "Erreur 403 : vous n'avez pas accès à cet URL");
             redirection(addLink("user", "list"));
         }
 
@@ -135,7 +135,7 @@ class PostulantController extends BaseController
              */
             $user = $this->getUser();
 
-            $this->setMessage("erreur",  $user->getFirstname() . " , vous êtes déjà connecté");
+            $this->setMessage("erreur", $user->getFirstname() . " , vous êtes déjà connecté");
             return redirection(addLink("home"));
         }
 
