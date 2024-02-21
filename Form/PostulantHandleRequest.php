@@ -45,17 +45,17 @@ class PostulantHandleRequest extends BaseHandleRequest
 
             if (empty($errors)) {
                 $password = password_hash($password, PASSWORD_DEFAULT);
-                $postulant->setGender($gender);
-                $postulant->setFirstname($firstname);
-                $postulant->setLastname($lastname);
+                $postulant->setGenre($gender);
+                $postulant->setPrenom($firstname);
+                $postulant->setNom($lastname);
                 $postulant->setTelephone($phone);
-                $postulant->setPassword($password);
+                $postulant->setMotDePasse($password);
                 $postulant->setEmail($email);
-                $postulant->setBirthday($birthday);
+                $postulant->setDateNaissance($birthday);
                 if (isset($role)) {
-                    $postulant->setRole($role);
+                    $postulant->setAdmin($role);
                 } else {
-                    $postulant->setRole('non');
+                    $postulant->setAdmin('non');
                 }
                 return $this;
             }
@@ -79,11 +79,10 @@ class PostulantHandleRequest extends BaseHandleRequest
                  * @var Postulant
                  */
                 $user = $this->userRepository->loginUser($email);
-                var_dump($user);
                 if (empty($user)) {
                     $errors[] = "Il n'y a pas d'utilisateur avec cet email";
                 } else {
-                    if (!password_verify($password, $user->getPassword())) {
+                    if (!password_verify($password, $user->getMotDePasse())) {
                         $errors[] = "Le mot de passe ne correspond pas";
                     }
                 }

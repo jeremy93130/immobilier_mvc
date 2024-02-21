@@ -13,7 +13,7 @@ use Model\Repository\BienRepository;
 /**
  * Summary of ProductController
  */
-class ProductController extends BaseController
+class BienController extends BaseController
 {
     private BienRepository $bienRepository;
     private BienHandleRequest $formBien;
@@ -53,7 +53,7 @@ class ProductController extends BaseController
 
         $errors = $this->formBien->getErrorsForm();
 
-        return $this->render("biens/biens.html.php", [
+        return $this->render("admin/biens/ajout.biens.html.php", [
             "h1" => "Ajouter une nouvelle propriété",
             "biens" => $bien,
             "errors" => $errors,

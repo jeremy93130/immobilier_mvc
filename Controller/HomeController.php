@@ -6,6 +6,7 @@ use Form\BienHandleRequest;
 use Controller\BaseController;
 use Model\Entity\Bien;
 use Model\Repository\BienRepository;
+use Service\Session;
 
 class HomeController extends BaseController
 {

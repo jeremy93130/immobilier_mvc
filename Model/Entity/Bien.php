@@ -25,6 +25,7 @@ class Bien extends BaseEntity
 
     private $achat_location;
 
+
     public function getTitre()
     {
         return $this->titre;
@@ -216,15 +217,6 @@ class Bien extends BaseEntity
     public function setImage($image)
     {
         $this->image = $image;
-        return $this;
-    }
-
-    public function getAchatLocation(){
-        return $this->achat_location;
-    }
-
-    public function setAchatLocation($achat_location){
-        $this->achat_location = $achat_location;
         return $this;
     }
 }

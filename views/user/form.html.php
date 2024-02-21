@@ -9,22 +9,22 @@ require "views/errors_form.html.php";
             <sup>*</sup>
         </label>
         <select class="form-select" aria-label="Default select example" id="gender" name="gender" required>
-            <option value="M." <?= ($user->getGender() === 'M.') ? 'selected' : ''; ?>>Monsieur</option>
-            <option value="MME" <?= ($user->getGender() === 'MME') ? 'selected' : ''; ?>>Madame</option>
+            <option value="M." <?= ($user->getGenre() === 'M.') ? 'selected' : ''; ?>>Monsieur</option>
+            <option value="MME" <?= ($user->getGenre() === 'MME') ? 'selected' : ''; ?>>Madame</option>
         </select>
     </div>
     <div class="form-group mt-3">
         <label for="lastname">Nom
             <sup>*</sup>
         </label>
-        <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Entrez votre nom" value="<?= $user->getLastname() ?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
+        <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Entrez votre nom" value="<?= $user->getNom() ?>" <?= $mode == "suppression" ? "disabled" : "" ?> required>
     </div>
 
     <div class="form-group mt-3">
         <label for="firstname">Prénom
             <sup>*</sup>
         </label>
-        <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Entrez votre prénom" value="<?= $user->getFirstname() ?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
+        <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Entrez votre prénom" value="<?= $user->getPrenom() ?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
     </div>
 
 
@@ -46,7 +46,7 @@ require "views/errors_form.html.php";
         <label for="birthday">Date de naissance
             <sup>*</sup>
         </label>
-        <input type="date" name="birthday" id="birthday" class="form-control" value="<?= $user->getBirthday() ?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
+        <input type="date" name="birthday" id="birthday" class="form-control" value="<?= $user->getDateNaissance() ?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
     </div>
 
     <div class="form-group mt-3">
@@ -55,10 +55,10 @@ require "views/errors_form.html.php";
         </label>
         <input type="text" name="phone" id="phone" class="form-control" placeholder="Entrez votre numéro de téléphone" value="<?= $user->getTelephone() ?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
     </div>
-    <?php if ($user->getRole() == "oui"): ?>
+    <?php if ($user->getAdmin() == "oui"): ?>
         <div class="form-group mt-3">
             <label for="role">Role</label>
-            <input type="text" name="role" id="role" class="form-control" value="<?= $user->getRole() ?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
+            <input type="text" name="role" id="role" class="form-control" value="<?= $user->getAdmin() ?>" <?= $mode == "suppression" ? "disabled" : "" ?>>
         </div>
     <?php endif; ?>
     <div class="d-flex justify-content-between mt-3">

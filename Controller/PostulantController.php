@@ -135,7 +135,7 @@ class PostulantController extends BaseController
              */
             $user = $this->getUser();
 
-            $this->setMessage("erreur", $user->getFirstname() . " , vous êtes déjà connecté");
+            $this->setMessage("erreur", $user->getPrenom() . " , vous êtes déjà connecté");
             return redirection(addLink("home"));
         }
 
@@ -146,7 +146,7 @@ class PostulantController extends BaseController
              * @var Postulant
              */
             $user = $this->getUser();
-            $this->setMessage("success", "Bonjour " . $user->getFirstname() . ", vous êtes connecté");
+            $this->setMessage("success", "Bonjour " . $user->getPrenom() . ", vous êtes connecté");
             redirection(addLink("home"));
             return redirection(addLink("home"));
         }
