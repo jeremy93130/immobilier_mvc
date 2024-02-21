@@ -219,4 +219,17 @@ class Bien extends BaseEntity
         $this->image = $image;
         return $this;
     }
+
+    public function getAchatLocation()
+    {
+        return $this->achat_location;
+    }
+
+    public function setAchatLocation($achat_location)
+    {
+        $this->achat_location = $achat_location;
+        return $this;
+    }
+
+    
 }

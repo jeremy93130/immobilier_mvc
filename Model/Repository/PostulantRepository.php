@@ -20,13 +20,13 @@ class PostulantRepository extends BaseRepository
 
     public function insertPostulant(Postulant $user)
     {
-        $sql = "INSERT INTO postulant (nom, prenom, genre, email, mot_de_passe, date_naissance, profession, salaire, telephone, admin) VALUES (:nom, :prenom, :genre, :email, :password, :birthday, :profession,:salaire,:telephone,:admin)";
+        $sql = "INSERT INTO postulant (nom, prenom, genre, email, mot_de_passe, date_naissance, profession, salaire, telephone, admin) VALUES (:nom, :prenom, :genre, :email, :mot_de_passe, :birthday, :profession,:salaire,:telephone,:admin)";
         $request = $this->dbConnection->prepare($sql);
         $request->bindValue(":nom", $user->getNom());
         $request->bindValue(":prenom", $user->getPrenom());
         $request->bindValue(":genre", $user->getGenre());
         $request->bindValue(":email", $user->getEmail());
-        $request->bindValue(":password", $user->getMotDePasse());
+        $request->bindValue(":mot_de_passe", $user->getMotDePasse());
         $request->bindValue(":birthday", $user->getDateNaissance());
         $request->bindValue(":profession", $user->getProfession());
         $request->bindValue(":salaire", $user->getSalaire());
@@ -75,7 +75,6 @@ class PostulantRepository extends BaseRepository
     {
         $request = $this->dbConnection->prepare("SELECT * FROM postulant WHERE email = :email");
         $request->bindParam(":email", $email);
-
         if ($request->execute()) {
             if ($request->rowCount() == 1) {
                 $request->setFetchMode(\PDO::FETCH_CLASS, "Model\Entity\Postulant");

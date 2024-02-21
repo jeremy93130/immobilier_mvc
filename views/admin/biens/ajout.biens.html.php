@@ -1,4 +1,4 @@
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div>
         <label for="titre">Titre du bien :</label>
         <input type="text" id="titre" name="titre">
@@ -26,10 +26,70 @@
         <input type="number" id="zone" name="code_postal">
         <label for="ville">Ville :</label>
         <input type="text" id="ville" name="ville">
+        <label for="zone">Zone :</label>
+        <select name="zone" id="zone">
+            <option value="urbaine">Urbaine</option>
+            <option value="industrielle">Industrielle</option>
+            <option value="rurale">Rurale</option>
+            <option value="pole_activite">Pole activité</option>
+        </select>
     </div>
     <div>
-        <label for="prixVente">Prix de Vente</label>
-        
+        <label for="prixVente">Prix de Vente (si achat)</label>
+        <input type="number" id="prixVente" name="vente">
+    </div>
+    <div>
+        <label for="prixHC">Loyer Hors Charge (facultatif)</label>
+        <input type="number" id="prixHC" name="hc">
+    </div>
+    <div>
+        <label for="prixCC">Loyer Charges Comprises (facultatif)</label>
+        <input type="number" id="prixCC" name="cc">
+    </div>
+    <div>
+        <label for="parking">Parking ?</label>
+        <select name="parking" id="parking">
+            <option value="oui">oui</option>
+            <option value="non">non</option>
+        </select>
+        <label for="garage">Garage ?</label>
+        <select name="garage" id="garage">
+            <option value="oui">oui</option>
+            <option value="non">non</option>
+        </select>
+        <label for="ascenseur">Ascenseur ?</label>
+        <select name="ascenseur" id="ascenseur">
+            <option value="oui">oui</option>
+            <option value="non">non</option>
+        </select>
+    </div>
+    <div>
+        <label for="consommation">Consommation Energetique</label>
+        <select name="consommation" id="consommation">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+        </select>
+    </div>
+    <div>
+        <label for="image">Ajouter une image</label>
+        <div>
+            <input type="file" name="image" id="image">
+        </div>
+    </div>
+    <div>
+        <label for="type">Vente/Location</label>
+        <select name="achat_location" id="achat_location">
+            <option value="achat">Vente</option>
+            <option value="location">Location</option>
+        </select>
+    </div>
+
+    <div>
+        <input type="submit" value="Enregistrer">
     </div>
 </form>
-

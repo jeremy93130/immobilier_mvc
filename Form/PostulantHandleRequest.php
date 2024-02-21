@@ -79,6 +79,7 @@ class PostulantHandleRequest extends BaseHandleRequest
                  * @var Postulant
                  */
                 $user = $this->userRepository->loginUser($email);
+                var_dump($user);
                 if (empty($user)) {
                     $errors[] = "Il n'y a pas d'utilisateur avec cet email";
                 } else {

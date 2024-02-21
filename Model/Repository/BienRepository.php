@@ -19,7 +19,7 @@ class BienRepository extends BaseRepository
 
     public function insertBien(Bien $bien)
     {
-        $sql = "INSERT INTO bien (titre, code_postal,ville,nb_pieces,surface,style,parking,garage,prix_vente,loyer_HC,loyer_CC,consommation,zone,ascenseur,etage,image,achat_location) VALUES (:titre, :code_postal, :ville, :nb_pieces, :surface, :style, :parking,:garage,:prix_vente,:loyer_HC,:loyer_CC,:consommation,:zone,:ascenseur,:etage,:image,:achatLocation)";
+        $sql = "INSERT INTO bien (titre, code_postal,ville,nb_pieces,surface,style,parking,garage,prix_vente,loyer_HC,loyer_CC,consommation,zone,ascenseur,etage,image,achat_location) VALUES (:titre, :code_postal, :ville, :nb_pieces, :surface, :style, :parking,:garage,:prix_vente,:loyer_HC,:loyer_CC,:consommation,:zone,:ascenseur,:etage,:image,:achat_location)";
         $request = $this->dbConnection->prepare($sql);
         $request->bindValue(":titre", $bien->getTitre());
         $request->bindValue(":code_postal", $bien->getCodePostal());
@@ -37,6 +37,7 @@ class BienRepository extends BaseRepository
         $request->bindValue(":ascenseur", $bien->getAscenseur());
         $request->bindValue(":etage", $bien->getEtage());
         $request->bindValue(":image", $bien->getImage());
+        $request->bindValue(":achat_location", $bien->getAchatLocation());
 
         $request = $request->execute();
         if ($request) {
@@ -52,7 +53,7 @@ class BienRepository extends BaseRepository
     public function updateBien(Bien $bien)
     {
         $sql = "UPDATE bien 
-                SET titre = :titre, code_postal = :codePostal, ville = :ville, nb_pieces = :nbPieces,surface= :surface, style = :style, parking = :parking,garage = :garage, prix_vente = :prixVente,loyer_HC = :loyerHC, loyer_CC = :loyer_CC,consommation = :consommation, zone = :zone,ascenseur = :ascenseur, etage = :etage, image = :image
+                SET titre = :titre, code_postal = :codePostal, ville = :ville, nb_pieces = :nbPieces,surface= :surface, style = :style, parking = :parking,garage = :garage, prix_vente = :prixVente,loyer_HC = :loyerHC, loyer_CC = :loyer_CC,consommation = :consommation, zone = :zone,ascenseur = :ascenseur, etage = :etage, image = :image, achat_location = :achat_location
                 WHERE id = :id";
         $request = $this->dbConnection->prepare($sql);
         $request->bindValue(":id", $bien->getId());
@@ -72,6 +73,7 @@ class BienRepository extends BaseRepository
         $request->bindValue(":ascenseur", $bien->getAscenseur());
         $request->bindValue(":etage", $bien->getEtage());
         $request->bindValue(":image", $bien->getImage());
+        $request->bindValue(":achat_location", $bien->getAchatLocation());
         $request = $request->execute();
         if ($request) {
             Session::addMessage("success", "La mise à jour de l'utilisateur a bien été éffectuée");
