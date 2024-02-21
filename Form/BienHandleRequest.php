@@ -52,6 +52,7 @@ class BienHandleRequest extends BaseHandleRequest
                 $bien->setSurface($surface);
                 $bien->setVille($ville);
                 $bien->setZone($zone);
+                $bien->setAchatLocation($achat_location);
                 return $this;
             }
             $this->setErrorsForm($errors);
