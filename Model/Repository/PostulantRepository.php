@@ -7,10 +7,10 @@ use Service\Session;
 
 class PostulantRepository extends BaseRepository
 {
-    public function checkUserExist($surname, $email)
+    public function checkUserExist($id, $email)
     {
-        $request = $this->dbConnection->prepare("SELECT COUNT(*) FROM postulant WHERE email = :email OR surname = :surname");
-        $request->bindParam(":surname", $surname);
+        $request = $this->dbConnection->prepare("SELECT COUNT(*) FROM postulant WHERE email = :email OR id_postulant = :id");
+        $request->bindParam(":id", $id);
         $request->bindParam(":email", $email);
 
         $request->execute();
@@ -22,16 +22,16 @@ class PostulantRepository extends BaseRepository
     {
         $sql = "INSERT INTO postulant (nom, prenom, genre, email, mot_de_passe, date_naissance, profession, salaire, telephone, admin) VALUES (:nom, :prenom, :genre, :email, :password, :birthday, :profession,:salaire,:telephone,:admin)";
         $request = $this->dbConnection->prepare($sql);
-        $request->bindValue(":nom", $user->getLastname());
-        $request->bindValue(":prenom", $user->getFirstname());
-        $request->bindValue(":genre", $user->getGender());
+        $request->bindValue(":nom", $user->getNom());
+        $request->bindValue(":prenom", $user->getPrenom());
+        $request->bindValue(":genre", $user->getGenre());
         $request->bindValue(":email", $user->getEmail());
-        $request->bindValue(":password", $user->getPassword());
-        $request->bindValue(":birthday", $user->getBirthday());
-        $request->bindValue(":profession", $user->getJob());
+        $request->bindValue(":password", $user->getMotDePasse());
+        $request->bindValue(":birthday", $user->getDateNaissance());
+        $request->bindValue(":profession", $user->getProfession());
         $request->bindValue(":salaire", $user->getSalaire());
         $request->bindValue(":telephone", $user->getTelephone());
-        $request->bindValue(":admin", $user->getRole());
+        $request->bindValue(":admin", $user->getAdmin());
 
         $request = $request->execute();
         if ($request) {
@@ -51,16 +51,16 @@ class PostulantRepository extends BaseRepository
                 WHERE id = :id";
         $request = $this->dbConnection->prepare($sql);
         $request->bindValue(":id", $user->getId());
-        $request->bindValue(":nom", $user->getLastname());
-        $request->bindValue(":prenom", $user->getFirstname());
-        $request->bindValue(":genre", $user->getGender());
+        $request->bindValue(":nom", $user->getNom());
+        $request->bindValue(":prenom", $user->getPrenom());
+        $request->bindValue(":genre", $user->getGenre());
         $request->bindValue(":email", $user->getEmail());
-        $request->bindValue(":password", $user->getPassword());
-        $request->bindValue(":birthday", $user->getBirthday());
-        $request->bindValue(":profession", $user->getJob());
+        $request->bindValue(":password", $user->getMotDePasse());
+        $request->bindValue(":birthday", $user->getDateNaissance());
+        $request->bindValue(":profession", $user->getProfession());
         $request->bindValue(":salaire", $user->getSalaire());
         $request->bindValue(":telephone", $user->getTelephone());
-        $request->bindValue(":admin", $user->getRole());
+        $request->bindValue(":admin", $user->getAdmin());
         $request = $request->execute();
         if ($request) {
             Session::addMessage("success", "La mise à jour de l'utilisateur a bien été éffectuée");

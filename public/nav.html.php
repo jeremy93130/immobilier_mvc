@@ -14,10 +14,10 @@
                 </li>
                 <?php if ($userConnecte = Service\Session::getUserConnected()): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= addLink("postulant", "show", $userConnecte->getId()) ?>"><?= $userConnecte->getSurname() ?></a>
+                        <a class="nav-link" href="<?= addLink("postulant", "show", $userConnecte->getId()) ?>"><?= $userConnecte->getPrenom() ?></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?= addLink("pustulant", "logout") ?>">
+                        <a class="nav-link" href="<?= addLink("postulant", "logout") ?>">
                             <i class="fa fa-sign-out"></i>
                         </a>
                     </li>
@@ -29,7 +29,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item" href="<?= addLink('admin/product', 'list') ?>">Liste</a>
+                                    <a class="dropdown-item" href="<?= addLink('admin/biencontroller', 'new') ?>">Liste</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="<?= addLink('admin/product', 'new') ?>">Ajouter</a>
@@ -51,14 +51,14 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                categories
+                                Propriétés
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item" href="<?= addLink('admin/category', 'list') ?>">Liste</a>
+                                    <a class="dropdown-item" href="<?= addLink('admin/bien', 'list') ?>">Liste</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="<?= addLink('admin/category', 'new') ?>">Ajouter</a>
+                                    <a class="dropdown-item" href="<?= addLink('admin/bien', 'new') ?>">Ajouter</a>
                                 </li>
                             </ul>
                         </li>

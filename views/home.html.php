@@ -1,4 +1,5 @@
 <div class="row">
+    <?php var_dump($_SESSION) ?>
     <?php foreach ($biens as $bien): ?>
         <div class="col-4 mt-3">
             <div class="card  position-relative pb-3">
@@ -8,20 +9,11 @@
 
                 </div>
                 <div class="">
-                    <a href="<?= addLink('bien', 'show', $bien->getId()); ?>" class="btn btn-secondary">En savoir
-                                                                        plus
+                    <a href="<?= addLink('bien', 'show', $bien->getId()); ?>" class="btn btn-secondary">En savoir plus
                     </a>
                 </div>
             </div>
         </div>
     <?php endforeach; ?>
 </div>
-
-
-<script>
-    $(document).ready(function () {
-
-addToCartAjax();
-});
-</script>
 

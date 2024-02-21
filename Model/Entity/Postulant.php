@@ -5,24 +5,24 @@ namespace Model\Entity;
 
 class Postulant extends BaseEntity
 {
-    private $gender;
-    private $firstname;
-    private $lastname;
+    private $genre;
+    private $prenom;
+    private $nom;
     private $email;
-    private $password;
-    private $birthday;
-    private $job;
+    private $mot_de_passe;
+    private $date_naissance;
+    private $profession;
     private $salaire;
     private $telephone;
-    private $role;
+    private $admin;
 
 
     /**
      * Get the value of gender
      */
-    public function getGender()
+    public function getGenre()
     {
-        return $this->gender;
+        return $this->genre;
     }
 
     /**
@@ -30,49 +30,49 @@ class Postulant extends BaseEntity
      *
      * @return  self
      */
-    public function setGender($gender)
+    public function setGenre($genre)
     {
-        $this->gender = $gender;
+        $this->genre = $genre;
 
         return $this;
     }
 
     /**
-     * Get the value of firstname
+     * Get the value of Prenom
      */
-    public function getFirstname()
+    public function getPrenom()
     {
-        return $this->firstname;
+        return $this->prenom;
     }
 
     /**
-     * Set the value of firstname
+     * Set the value of prenom
      *
      * @return  self
      */
-    public function setFirstname($firstname)
+    public function setPrenom($prenom)
     {
-        $this->firstname = $firstname;
+        $this->prenom = $prenom;
 
         return $this;
     }
 
     /**
-     * Get the value of lastname
+     * Get the value of Nom
      */
-    public function getLastname()
+    public function getNom()
     {
-        return $this->lastname;
+        return $this->nom;
     }
 
     /**
-     * Set the value of lastname
+     * Set the value of Nom
      *
      * @return  self
      */
-    public function setLastname($lastname)
+    public function setNom($nom)
     {
-        $this->lastname = $lastname;
+        $this->nom = $nom;
 
         return $this;
     }
@@ -80,9 +80,9 @@ class Postulant extends BaseEntity
     /**
      * Get the value of password
      */
-    public function getPassword()
+    public function getMotDePasse()
     {
-        return $this->password;
+        return $this->mot_de_passe;
     }
 
     /**
@@ -90,9 +90,9 @@ class Postulant extends BaseEntity
      *
      * @return  self
      */
-    public function setPassword($password)
+    public function setMotDePasse($mot_de_passe)
     {
-        $this->password = $password;
+        $this->mot_de_passe = $mot_de_passe;
 
         return $this;
     }
@@ -120,9 +120,9 @@ class Postulant extends BaseEntity
     /**
      * Get the value of birthday
      */
-    public function getBirthday()
+    public function getDateNaissance()
     {
-        return $this->birthday;
+        return $this->date_naissance;
     }
 
     /**
@@ -130,10 +130,10 @@ class Postulant extends BaseEntity
      *
      * @return  self
      */
-    public function setBirthday($birthday)
+    public function setDateNaissance($date_naissance)
     {
-        $dateTime = new \DateTime($birthday);
-        $this->birthday = $dateTime->format('Y-m-d');
+        $dateTime = new \DateTime($date_naissance);
+        $this->date_naissance = $dateTime->format('Y-m-d');
 
         return $this;
     }
@@ -141,9 +141,9 @@ class Postulant extends BaseEntity
     /**
      * Get the value of role
      */
-    public function getRole()
+    public function getAdmin()
     {
-        return $this->role;
+        return $this->admin;
     }
 
     /**
@@ -151,17 +151,17 @@ class Postulant extends BaseEntity
      *
      * @return  self
      */
-    public function setRole($role)
+    public function setAdmin($admin)
     {
         // Assurez-vous que le rôle est soit "oui" ou "non"
-        $this->role = ($role !== null && ($role === "oui" || $role === "non")) ? $role : "non";
+        $this->admin = ($admin !== null && ($admin === "oui" || $admin === "non")) ? $admin : "non";
 
         return $this;
     }
 
-    public function getJob()
+    public function getProfession()
     {
-        return $this->job;
+        return $this->profession;
     }
 
     /**
@@ -169,9 +169,9 @@ class Postulant extends BaseEntity
      *
      * @return  self
      */
-    public function setJob($job)
+    public function setProfession($profession)
     {
-        $this->job = $job;
+        $this->profession = $profession;
 
         return $this;
     }
