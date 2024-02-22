@@ -10,7 +10,7 @@ define("POSTULANT", "non");
 define("ADMIN", "oui");
 define("INSERTED", "Enregistrer");
 define("UPDATED", "Modifier");
-define("DELETED", "Spprimr");
+define("DELETED", "Supprimer");
 define("UPLOAD_BIENS_IMG", "uploads/biens/");
 define("UPLOAD_LOGO_IMG", "uploads/logos/");
 define("EN_ATTENTE", "En Attente");

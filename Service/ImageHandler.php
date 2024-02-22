@@ -12,7 +12,7 @@ class ImageHandler
         // Emplacement où vous souhaitez enregistrer le fichier
         $target_dir = UPLOAD_BIENS_IMG;
         // Construire un nom de fichier unique en ajoutant un horodatage au nom d'origine
-        $originalFileName = basename($_FILES["photo"]["name"]);
+        $originalFileName = basename($_FILES["image"]["name"]);
         $timestamp = time(); // Utilisation de l'horodatage actuel
         $uniqueFileName = $timestamp . "_" . $originalFileName;
         $target_file = $target_dir . $uniqueFileName;
@@ -24,12 +24,12 @@ class ImageHandler
             Sess::addMessage("errors", "Seules les images de types JPEG, png, gif et svg sont autorisées.");
         } else {
             // Vérifier la taille de l'image (par exemple, 1 Mo)
-            if ($_FILES["photo"]["size"] > 1000000) {
-                Sess::addMessage("errors", "L'image est trop volumineuse. La taille maximale autorisée est de 1 Mo.");
+            if ($_FILES["image"]["size"] > 10000000) {
+                Sess::addMessage("errors", "L'image est trop volumineuse. La taille maximale autorisée est de 10 Mo.");
             } else {
                 // Déplacer le fichier téléversé vers le répertoire cible
-                move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file);
-                $entity->setPhoto($uniqueFileName);
+                move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+                $entity->setImage($uniqueFileName);
                 Sess::addMessage("succes", "L'image a été téléversée avec succès.");
             }
         }

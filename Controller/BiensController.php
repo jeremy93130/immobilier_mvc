@@ -19,11 +19,11 @@ class BiensController extends BaseController
         $this->form = new BienHandleRequest;
         $this->bien = new Bien;
     }
-    public function detailBien(BienRepository $bien,$id){
-
-        $bienDetail = $bien->findById($bien,$id);
-        $this->render('admin/biens.html.php',[
-            'bien'
+    public function detailBien($id)
+    {
+        $bienDetail = $this->bienRepository->findById($this->bien, $id);
+        $this->render('biens/show.html.php', [
+            'bien' => $bienDetail,
         ]);
     }
 }

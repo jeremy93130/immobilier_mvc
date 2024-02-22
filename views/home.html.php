@@ -1,19 +1,29 @@
-<div class="row">
-    <?php var_dump($_SESSION) ?>
+<section id="home">
     <?php foreach ($biens as $bien): ?>
-        <div class="col-4 mt-3">
-            <div class="card  position-relative pb-3">
-                <div class="card-body">
-                    <h6 class="card-title"><?= substr($bien->getTitre(), 0, 50) . " ..."; ?></h6>
-                    <p class="card-text"><?= $bien->getTitre(); ?></p>
-
-                </div>
-                <div class="">
-                    <a href="<?= addLink('bien', 'show', $bien->getId()); ?>" class="btn btn-secondary">En savoir plus
-                    </a>
-                </div>
+        <div id="bien_home">
+            <div class="img_home">
+                <img src="<?= ROOT . UPLOAD_BIENS_IMG . $bien->getImage(); ?>" alt="image-produit" class="card-img-top">
+            </div>
+            <div>
+                <h2><?= $bien->getTitre() ?></h2>
+                <?php if ($bien->getPrixVente() !== null) { ?>
+                        <p><?= number_format($bien->getPrixVente(), 0, ',', '.') . " €" ?></p>
+                <?php } else if ($bien->getLoyerHC() !== null) { ?>
+                            <p><?= $bien->getLoyerHC(); ?></p>
+                <?php } else if ($bien->getLoyerCC() !== null) { ?>
+                                <p><?= $bien->getLoyerCC(); ?></p>
+                <?php } ?>
+                <p><?= $bien->getStyle(); ?></p>
+                <p><?= $bien->getnbPieces() . " pièces / " . $bien->getSurface() . " m² / " . $bien->getEtage() . " Étages" . ($bien->getParking() == 'oui' ? " / Parking" : "") ?></p>
+                <p>
+                    <a href="<?= addLink('biens', 'detailBien', $bien->getId()); ?>">En savoir plus ...</a>
+                </p>
             </div>
         </div>
+        <?php if ($bien !== end($biens)): ?>
+            <hr>
+        <?php endif; ?>
+
     <?php endforeach; ?>
-</div>
+</section>
 

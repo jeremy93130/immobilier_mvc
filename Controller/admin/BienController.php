@@ -26,11 +26,11 @@ class BienController extends BaseController
         $this->bien = new Bien;
     }
 
-    public function list(Bien $bien)
+    public function list()
     {
-        $products = $this->bienRepository->findAll($bien);
+        $products = $this->bienRepository->findAll($this->bien);
 
-        $this->render("admin/biens/biens.html.php", [
+        $this->render("admin/biens/list.biens.html.php", [
             "h1" => "Liste des produits",
             "products" => $products
         ]);

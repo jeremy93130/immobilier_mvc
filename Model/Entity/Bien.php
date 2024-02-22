@@ -7,6 +7,7 @@ use Model\Entity\Postulant;
 class Bien extends BaseEntity
 {
     private $titre;
+    private $description;
     private $code_postal;
     private $ville;
     private $nb_pieces;
@@ -35,6 +36,18 @@ class Bien extends BaseEntity
     public function setTitre($titre)
     {
         $this->titre = $titre;
+
+        return $this;
+    }
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
 
         return $this;
     }
@@ -231,5 +244,5 @@ class Bien extends BaseEntity
         return $this;
     }
 
-    
+
 }

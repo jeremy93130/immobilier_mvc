@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 19 fév. 2024 à 16:51
+-- Généré le : jeu. 22 fév. 2024 à 09:20
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -34,7 +34,7 @@ CREATE TABLE `bien` (
   `ville` varchar(300) NOT NULL,
   `nb_pieces` int(11) NOT NULL,
   `surface` float NOT NULL,
-  `style` enum('Maison','Appartement','Villa','Garage','Local commercial') NOT NULL,
+  `style` enum('Maison','Manoir','Appartement','Villa','Garage','Local commercial') NOT NULL,
   `parking` enum('oui','non') NOT NULL,
   `garage` enum('oui','non') NOT NULL,
   `prix_vente` float DEFAULT NULL,
@@ -43,15 +43,16 @@ CREATE TABLE `bien` (
   `consommation` enum('A','B','C','D','E','F','G') NOT NULL,
   `zone` enum('industrielle','urbaine','rurale','pole activite') NOT NULL,
   `ascenseur` enum('oui','non') NOT NULL,
-  `etage` int(11) NOT NULL
+  `etage` int(11) NOT NULL,
+  `achat_location` enum('achat','location') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `bien`
 --
 
-INSERT INTO `bien` (`id_bien`, `titre`, `code_postal`, `ville`, `nb_pieces`, `surface`, `style`, `parking`, `garage`, `prix_vente`, `loyer_HC`, `loyer_CC`, `consommation`, `zone`, `ascenseur`, `etage`) VALUES
-(1, 'test', 94400, 'Vitry-sur-seine', 2, 45, 'Appartement', 'non', 'non', 0, 0, 850, 'D', 'urbaine', 'non', 0);
+INSERT INTO `bien` (`id_bien`, `titre`, `code_postal`, `ville`, `nb_pieces`, `surface`, `style`, `parking`, `garage`, `prix_vente`, `loyer_HC`, `loyer_CC`, `consommation`, `zone`, `ascenseur`, `etage`, `achat_location`) VALUES
+(1, 'test', 94400, 'Vitry-sur-seine', 2, 45, 'Appartement', 'non', 'non', 0, 0, 850, 'D', 'urbaine', 'non', 0, 'achat');
 
 -- --------------------------------------------------------
 
@@ -84,8 +85,8 @@ CREATE TABLE `postulant` (
   `email` varchar(150) NOT NULL,
   `mot_de_passe` varchar(300) NOT NULL,
   `date_naissance` date NOT NULL,
-  `profession` varchar(300) NOT NULL,
-  `salaire` float NOT NULL,
+  `profession` varchar(300) DEFAULT NULL,
+  `salaire` float DEFAULT NULL,
   `telephone` int(11) NOT NULL,
   `admin` enum('oui','non') NOT NULL DEFAULT 'non'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -95,7 +96,8 @@ CREATE TABLE `postulant` (
 --
 
 INSERT INTO `postulant` (`id_postulant`, `nom`, `prenom`, `genre`, `email`, `mot_de_passe`, `date_naissance`, `profession`, `salaire`, `telephone`, `admin`) VALUES
-(1, 'Dubrulle', 'Jeremy', 'M.', 'jeremy@mail.fr', 'jeremy', '1992-05-11', 'chomeur', 2000, 102030405, 'oui');
+(2, 'Dubreuil', 'Nathan', 'M.', 'nathan@mail.com', '$2y$10$xbVYG8IhIVGWUCte1ZZQ7eGHInzhAK5GlwQROOxH79X/bPL3Sz2Dm', '1992-03-10', NULL, NULL, 102030405, 'non'),
+(3, 'Dubrulle', 'Jeremy', 'M.', 'jeremy@mail.fr', '$2y$10$3uQejex.sWZZtdlB9maoEu2a5ewGoGAnXn1Yhz1qxEuXQocp.OVRi', '1992-05-11', 'Pompier', NULL, 102030405, 'oui');
 
 -- --------------------------------------------------------
 
@@ -160,7 +162,7 @@ ALTER TABLE `personne_additionnelle`
 -- AUTO_INCREMENT pour la table `postulant`
 --
 ALTER TABLE `postulant`
-  MODIFY `id_postulant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_postulant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `postulant_bien`

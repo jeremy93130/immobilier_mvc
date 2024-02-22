@@ -1,3 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Roboto&display=swap');
+
+
+/* ********************* HOME ****************** */
+
+#bien_home {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+#bien_home>div:first-child {
+    width: 50%;
+}
+
+#bien_home>div:last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    text-align: right;
+}
+
+.img_home {
+    height: 300px;
+
+    img {
+        height: 100%;
+    }
+}
+
+/* ****************** FIN HOME **************** */
 i {
     font-size: 12px;
+}
+
+#detail_bien {
+    display: flex;
+    justify-content: space-between;
+
+    h1 {
+        font-size: 18px;
+    }
+}
+
+#contact_agence_detail {
+    width: 25%;
+}
+
+#contact_agence_detail>div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    div {
+        width: 100px;
+
+    }
+
+    h2 {
+        font-family: "Merienda";
+        font-size: 19px;
+        margin: 0;
+    }
+
+    img {
+        width: 100%;
+    }
+}
+
+#contact_agence_detail form {
+    div {
+        margin: 20px 0;
+    }
+
+    input {
+        display: block;
+    }
 }

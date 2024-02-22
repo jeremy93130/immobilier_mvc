@@ -26,5 +26,3 @@
                 <?php include __DIR__ . "/nav.html.php"; ?>
 
                 <?php include dirname(__DIR__) . "/views/message.html.php"; ?>
-
-                <h1><?= $h1 ?? "Bienvenue au projet" ?></h1>

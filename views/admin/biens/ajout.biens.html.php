@@ -4,9 +4,14 @@
         <input type="text" id="titre" name="titre">
     </div>
     <div>
+        <label for="description">Description du bien :</label>
+        <textarea name="description" id="description" cols="30" rows="2"></textarea>
+    </div>
+    <div>
         <label for="style">Style :</label>
         <select name="style" id="style">
             <option value="Maison">Maison</option>
+            <option value="Manoir">Manoir</option>
             <option value="Appartement">Appartement</option>
             <option value="Villa">Villa</option>
             <option value="Garage">Garage</option>
@@ -76,6 +81,10 @@
         </select>
     </div>
     <div>
+        <label for="etage">Etage :</label>
+        <input type="number" name="etage" id="etage">
+    </div>
+    <div>
         <label for="image">Ajouter une image</label>
         <div>
             <input type="file" name="image" id="image">
@@ -90,6 +99,7 @@
     </div>
 
     <div>
-        <input type="submit" value="Enregistrer">
+        <input type="submit" value="Enregistrer" name="ajout_bien">
     </div>
 </form>
+

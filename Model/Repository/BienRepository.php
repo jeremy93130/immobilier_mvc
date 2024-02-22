@@ -19,9 +19,10 @@ class BienRepository extends BaseRepository
 
     public function insertBien(Bien $bien)
     {
-        $sql = "INSERT INTO bien (titre, code_postal,ville,nb_pieces,surface,style,parking,garage,prix_vente,loyer_HC,loyer_CC,consommation,zone,ascenseur,etage,image,achat_location) VALUES (:titre, :code_postal, :ville, :nb_pieces, :surface, :style, :parking,:garage,:prix_vente,:loyer_HC,:loyer_CC,:consommation,:zone,:ascenseur,:etage,:image,:achat_location)";
+        $sql = "INSERT INTO bien (titre,description, code_postal,ville,nb_pieces,surface,style,parking,garage,prix_vente,loyer_HC,loyer_CC,consommation,zone,ascenseur,etage,image,achat_location) VALUES (:titre, :description, :code_postal, :ville, :nb_pieces, :surface, :style, :parking,:garage,:prix_vente,:loyer_HC,:loyer_CC,:consommation,:zone,:ascenseur,:etage,:image,:achat_location)";
         $request = $this->dbConnection->prepare($sql);
         $request->bindValue(":titre", $bien->getTitre());
+        $request->bindValue(":description", $bien->getDescription());
         $request->bindValue(":code_postal", $bien->getCodePostal());
         $request->bindValue(":ville", $bien->getVille());
         $request->bindValue(":nb_pieces", $bien->getnbPieces());
@@ -41,10 +42,10 @@ class BienRepository extends BaseRepository
 
         $request = $request->execute();
         if ($request) {
-            Session::addMessage("success", "Le nouvel utilisateur a bien été enregistré");
+            Session::addMessage("success", "Le nouveau bien a bien été enregistré");
             return true;
         } else {
-            Session::addMessage("danger", "Erreur : l'utilisateur n'a pas été enregistré");
+            Session::addMessage("danger", "Erreur : le bien n'a pas été enregistré");
             return false;
         }
     }
@@ -53,11 +54,12 @@ class BienRepository extends BaseRepository
     public function updateBien(Bien $bien)
     {
         $sql = "UPDATE bien 
-                SET titre = :titre, code_postal = :codePostal, ville = :ville, nb_pieces = :nbPieces,surface= :surface, style = :style, parking = :parking,garage = :garage, prix_vente = :prixVente,loyer_HC = :loyerHC, loyer_CC = :loyer_CC,consommation = :consommation, zone = :zone,ascenseur = :ascenseur, etage = :etage, image = :image, achat_location = :achat_location
+                SET titre = :titre, description = :description, code_postal = :codePostal, ville = :ville, nb_pieces = :nbPieces,surface= :surface, style = :style, parking = :parking,garage = :garage, prix_vente = :prixVente,loyer_HC = :loyerHC, loyer_CC = :loyer_CC,consommation = :consommation, zone = :zone,ascenseur = :ascenseur, etage = :etage, image = :image, achat_location = :achat_location
                 WHERE id = :id";
         $request = $this->dbConnection->prepare($sql);
         $request->bindValue(":id", $bien->getId());
         $request->bindValue(":titre", $bien->getTitre());
+        $request->bindValue(":description", $bien->getDescription());
         $request->bindValue(":codePostal", $bien->getCodePostal());
         $request->bindValue(":ville", $bien->getVille());
         $request->bindValue(":nbPieces", $bien->getnbPieces());
