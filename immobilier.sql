@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 22 fév. 2024 à 09:20
+-- Généré le : ven. 23 fév. 2024 à 09:23
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -28,8 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `bien` (
-  `id_bien` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `titre` varchar(250) NOT NULL,
+  `description` text NOT NULL,
   `code_postal` int(11) NOT NULL,
   `ville` varchar(300) NOT NULL,
   `nb_pieces` int(11) NOT NULL,
@@ -44,15 +45,17 @@ CREATE TABLE `bien` (
   `zone` enum('industrielle','urbaine','rurale','pole activite') NOT NULL,
   `ascenseur` enum('oui','non') NOT NULL,
   `etage` int(11) NOT NULL,
-  `achat_location` enum('achat','location') NOT NULL
+  `achat_location` enum('achat','location') NOT NULL,
+  `image` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `bien`
 --
 
-INSERT INTO `bien` (`id_bien`, `titre`, `code_postal`, `ville`, `nb_pieces`, `surface`, `style`, `parking`, `garage`, `prix_vente`, `loyer_HC`, `loyer_CC`, `consommation`, `zone`, `ascenseur`, `etage`, `achat_location`) VALUES
-(1, 'test', 94400, 'Vitry-sur-seine', 2, 45, 'Appartement', 'non', 'non', 0, 0, 850, 'D', 'urbaine', 'non', 0, 'achat');
+INSERT INTO `bien` (`id`, `titre`, `description`, `code_postal`, `ville`, `nb_pieces`, `surface`, `style`, `parking`, `garage`, `prix_vente`, `loyer_HC`, `loyer_CC`, `consommation`, `zone`, `ascenseur`, `etage`, `achat_location`, `image`) VALUES
+(2, 'Manoir Halliwell', 'Grand Manoir victorien appartenant aux soeurs Halliwell les meilleures sorcières du monde , attention aux attaques de démons !', 94400, 'Vitry-sur-Seine', 14, 465, 'Manoir', 'non', 'oui', 3000000, 0, 0, 'C', 'urbaine', 'non', 3, 'achat', '1708592121_halliwell.webp'),
+(4, 'Manoir de Batman', 'Venez vivre des aventures folles dans ce manoir hanté par le joker et harley queen', 94400, 'Vitry-sur-Seine', 38, 6000, 'Manoir', 'oui', 'oui', 150000000, 0, 0, 'A', 'urbaine', 'non', 4, 'achat', '1708614243_batman.jpg');
 
 -- --------------------------------------------------------
 
@@ -120,7 +123,7 @@ CREATE TABLE `postulant_bien` (
 -- Index pour la table `bien`
 --
 ALTER TABLE `bien`
-  ADD PRIMARY KEY (`id_bien`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `personne_additionnelle`
@@ -150,7 +153,7 @@ ALTER TABLE `postulant_bien`
 -- AUTO_INCREMENT pour la table `bien`
 --
 ALTER TABLE `bien`
-  MODIFY `id_bien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `personne_additionnelle`

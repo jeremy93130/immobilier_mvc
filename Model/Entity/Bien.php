@@ -26,7 +26,6 @@ class Bien extends BaseEntity
 
     private $achat_location;
 
-
     public function getTitre()
     {
         return $this->titre;

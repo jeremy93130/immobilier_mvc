@@ -1,4 +1,8 @@
-<a href="<?= addLink('home', 'list'); ?>"> <---- Retour</a>
+<?php use Service\Session; var_dump(Session::getUserConnected()); ?>
+
+
+
+<a href="<?= addLink('home', 'list');?>"> <---- Retour</a>
 <section id="detail_bien">
     <div class="col-4 mt-3">
         <div class="card" style="width: 50rem;">
@@ -21,29 +25,30 @@
             </div>
         </div>
         <hr>
-        <h2>Des questions ?</h2>
-        <form method="post">
+        <h4>Des questions sur ce bien ?</h4>
+        <form method="post" id="form_message_agence">
             <div>
-                <label for="nom">Nom</label>
+                <label for="nom">Nom<span>*</span></label>
                 <input type="text" id="nom" name="nom">
             </div>
             <div>
-                <label for="email">E-mail</label>
+                <label for="email">E-mail<span>*</span>
+                </label>
                 <input type="email" id="email" name="email">
             </div>
             <div>
-                <label for="telephone">Téléphone</label>
+                <label for="telephone">Téléphone<span>*</span></label>
                 <input type="tel" id="telephone" name="telephone">
             </div>
             <div>
-                <label for="message">Ajouter un message</label>
-                <textarea name="message" id="textarea" cols="30" rows="5"></textarea>
+                <label for="message">Ajouter un message<span>*</span>
+                </label>
+                <textarea name="message" id="textarea" placeholder="300 caractères maximum" cols="30" rows="5"></textarea>
             </div>
             <div>
                 <button type="submit" id="contact_agence" name="submit_contact_agence">Contacter l'agence</button>
             </div>
         </form>
-        <p></p>
     </div>
 </section>
 

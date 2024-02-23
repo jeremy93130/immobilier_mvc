@@ -30,6 +30,8 @@
 }
 
 /* ****************** FIN HOME **************** */
+
+/* ******************** Details ***************** */
 i {
     font-size: 12px;
 }
@@ -76,4 +78,8 @@ i {
     input {
         display: block;
     }
+}
+
+#form_message_agence span {
+    color: red;
 }

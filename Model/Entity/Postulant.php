@@ -15,11 +15,11 @@ class Postulant extends BaseEntity
     private $salaire;
     private $telephone;
     private $admin;
-
-
+    
     /**
      * Get the value of gender
      */
+
     public function getGenre()
     {
         return $this->genre;

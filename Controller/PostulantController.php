@@ -147,6 +147,7 @@ class PostulantController extends BaseController
              */
             $user = $this->getUser();
             $this->setMessage("success", "Bonjour " . $user->getPrenom() . ", vous êtes connecté");
+            //    d_die($user);
             return redirection(addLink("home"));
         }
 
