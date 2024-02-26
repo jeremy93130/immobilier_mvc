@@ -4,7 +4,7 @@ require "views/errors_form.html.php";
 ?>
 
 
-<h1>Test</h1>
+<h1>Liste des biens enregistrés</h1>
 
 <table class="table">
     <thead>

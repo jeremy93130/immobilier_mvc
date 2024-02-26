@@ -10,7 +10,7 @@
 }
 
 #bien_home>div:first-child {
-    width: 50%;
+    width: 40%;
 }
 
 #bien_home>div:last-child {
@@ -46,7 +46,7 @@ i {
 }
 
 #contact_agence_detail {
-    width: 25%;
+    width: 75%;
 }
 
 #contact_agence_detail>div:first-child {
@@ -82,4 +82,11 @@ i {
 
 #form_message_agence span {
     color: red;
+}
+
+
+/* *************** List messages *********** */
+
+#table-messages-list {
+    margin-top: 30px;
 }

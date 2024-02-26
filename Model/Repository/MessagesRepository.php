@@ -3,6 +3,7 @@
 namespace Model\Repository;
 
 use Model\Entity\Messages;
+use Model\Entity\Postulant;
 use Service\Session;
 
 class MessagesRepository extends BaseRepository
@@ -49,6 +50,23 @@ class MessagesRepository extends BaseRepository
         } else {
             Session::addMessage('Erreur', 'La mise à jour du message n\'a pas pu être executée correctement');
             return false;
+        }
+    }
+
+    public function getMessagesAndUser()
+    {
+        $sql = "SELECT *
+                FROM messages
+                JOIN postulant ON messages.postulant_id = postulant.id";
+
+        $request = $this->dbConnection->prepare($sql);
+        $success = $request->execute();
+
+        if ($success) {
+            return $request->fetchAll();
+        } else {
+            $errorInfo = $request->errorInfo();
+            return $errorInfo;
         }
     }
 }

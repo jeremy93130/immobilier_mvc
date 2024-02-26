@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 23 fév. 2024 à 09:23
+-- Généré le : lun. 26 fév. 2024 à 14:58
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -60,11 +60,34 @@ INSERT INTO `bien` (`id`, `titre`, `description`, `code_postal`, `ville`, `nb_pi
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `postulant_id` int(11) NOT NULL,
+  `date_message` timestamp NOT NULL DEFAULT current_timestamp(),
+  `telephone` varchar(20) NOT NULL,
+  `email` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `messages`
+--
+
+INSERT INTO `messages` (`id`, `message`, `postulant_id`, `date_message`, `telephone`, `email`) VALUES
+(1, 'test', 3, '2024-02-26 08:21:39', '0102030405', 'jeremy@mail.fr'),
+(2, 'Bonjour j\'aimerais avoir plus d\'informations sur Batman', 3, '2024-02-26 08:28:34', '0613451200', 'jeremy@mail.fr');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `personne_additionnelle`
 --
 
 CREATE TABLE `personne_additionnelle` (
-  `id_personne_additionnelle` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `genre` enum('M.','MME') NOT NULL,
   `nom` varchar(150) NOT NULL,
   `prenom` varchar(150) NOT NULL,
@@ -81,7 +104,7 @@ CREATE TABLE `personne_additionnelle` (
 --
 
 CREATE TABLE `postulant` (
-  `id_postulant` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `nom` varchar(150) NOT NULL,
   `prenom` varchar(150) NOT NULL,
   `genre` enum('M.','MME') NOT NULL,
@@ -98,7 +121,7 @@ CREATE TABLE `postulant` (
 -- Déchargement des données de la table `postulant`
 --
 
-INSERT INTO `postulant` (`id_postulant`, `nom`, `prenom`, `genre`, `email`, `mot_de_passe`, `date_naissance`, `profession`, `salaire`, `telephone`, `admin`) VALUES
+INSERT INTO `postulant` (`id`, `nom`, `prenom`, `genre`, `email`, `mot_de_passe`, `date_naissance`, `profession`, `salaire`, `telephone`, `admin`) VALUES
 (2, 'Dubreuil', 'Nathan', 'M.', 'nathan@mail.com', '$2y$10$xbVYG8IhIVGWUCte1ZZQ7eGHInzhAK5GlwQROOxH79X/bPL3Sz2Dm', '1992-03-10', NULL, NULL, 102030405, 'non'),
 (3, 'Dubrulle', 'Jeremy', 'M.', 'jeremy@mail.fr', '$2y$10$3uQejex.sWZZtdlB9maoEu2a5ewGoGAnXn1Yhz1qxEuXQocp.OVRi', '1992-05-11', 'Pompier', NULL, 102030405, 'oui');
 
@@ -109,7 +132,7 @@ INSERT INTO `postulant` (`id_postulant`, `nom`, `prenom`, `genre`, `email`, `mot
 --
 
 CREATE TABLE `postulant_bien` (
-  `id_postulant_bien` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `postulant_id` int(11) NOT NULL,
   `bien_id` int(11) NOT NULL,
   `personne_additionnelle_id` int(11) DEFAULT NULL
@@ -126,24 +149,31 @@ ALTER TABLE `bien`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `postulant_id` (`postulant_id`);
+
+--
 -- Index pour la table `personne_additionnelle`
 --
 ALTER TABLE `personne_additionnelle`
-  ADD PRIMARY KEY (`id_personne_additionnelle`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `postulant_id` (`postulant_id`);
 
 --
 -- Index pour la table `postulant`
 --
 ALTER TABLE `postulant`
-  ADD PRIMARY KEY (`id_postulant`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Index pour la table `postulant_bien`
 --
 ALTER TABLE `postulant_bien`
-  ADD PRIMARY KEY (`id_postulant_bien`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -156,32 +186,44 @@ ALTER TABLE `bien`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT pour la table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT pour la table `personne_additionnelle`
 --
 ALTER TABLE `personne_additionnelle`
-  MODIFY `id_personne_additionnelle` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `postulant`
 --
 ALTER TABLE `postulant`
-  MODIFY `id_postulant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `postulant_bien`
 --
 ALTER TABLE `postulant_bien`
-  MODIFY `id_postulant_bien` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées
 --
 
 --
+-- Contraintes pour la table `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`postulant_id`) REFERENCES `postulant` (`id`);
+
+--
 -- Contraintes pour la table `personne_additionnelle`
 --
 ALTER TABLE `personne_additionnelle`
-  ADD CONSTRAINT `personne_additionnelle_ibfk_1` FOREIGN KEY (`postulant_id`) REFERENCES `postulant` (`id_postulant`);
+  ADD CONSTRAINT `personne_additionnelle_ibfk_1` FOREIGN KEY (`postulant_id`) REFERENCES `postulant` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

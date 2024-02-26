@@ -25,5 +25,18 @@
         <?php endif; ?>
 
     <?php endforeach; ?>
+
+    <div id="filtrage">
+        <h3>Filtrer par :
+        </h3>
+        <div>
+            <label for="nb_pieces">Nombre de pièces :</label>
+            <input type="number" id="nb_pieces" name="nb_pieces">
+        </div>
+        <div>
+            <label for="nb_pieces">Nombre de pièces :</label>
+            <input type="number" id="nb_pieces" name="nb_pieces">
+        </div>
+    </div>
 </section>
 

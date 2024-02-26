@@ -42,5 +42,4 @@ class Messages extends BaseEntity
         $this->telephone = $telephone;
         return $this;
     }
-
 }
