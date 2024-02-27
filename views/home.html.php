@@ -1,3 +1,4 @@
+<?php var_dump($_POST); ?>
 <section id="home">
     <?php foreach ($biens as $bien): ?>
         <div id="bien_home">
@@ -7,11 +8,11 @@
             <div>
                 <h2><?= $bien->getTitre() ?></h2>
                 <?php if ($bien->getPrixVente() !== null) { ?>
-                        <p><?= number_format($bien->getPrixVente(), 0, ',', '.') . " €" ?></p>
-                <?php } else if ($bien->getLoyerHC() !== null) { ?>
-                            <p><?= $bien->getLoyerHC(); ?></p>
+                        <p style="font-weight: bold">
+                            <?= number_format($bien->getPrixVente(), 0, ',', '.') . " €" ?></p>
                 <?php } else if ($bien->getLoyerCC() !== null) { ?>
-                                <p><?= $bien->getLoyerCC(); ?></p>
+                            <p style="font-weight: bold"><?= $bien->getLoyerCC(); ?>
+                                € cc</p>
                 <?php } ?>
                 <p><?= $bien->getStyle(); ?></p>
                 <p><?= $bien->getnbPieces() . " pièces / " . $bien->getSurface() . " m² / " . $bien->getEtage() . " Étages" . ($bien->getParking() == 'oui' ? " / Parking" : "") ?></p>
@@ -29,14 +30,33 @@
     <div id="filtrage">
         <h3>Filtrer par :
         </h3>
-        <div>
-            <label for="nb_pieces">Nombre de pièces :</label>
-            <input type="number" id="nb_pieces" name="nb_pieces">
-        </div>
-        <div>
-            <label for="nb_pieces">Nombre de pièces :</label>
-            <input type="number" id="nb_pieces" name="nb_pieces">
-        </div>
+        <form method="post">
+            <div>
+                <label for="nb_pieces" style="font-weight: bold;">Nombre de pièces :</label>
+                <input type="number" id="nb_pieces" name="nb_pieces">
+            </div>
+            <div>
+                <label for="surface" style="font-weight: bold;">Quelle surface habitable ?
+                </label>
+                <div>
+                    <label for="surface-min" style="font-weight: bold;">Min :</label>
+                    <input type="number" id="surface-min" name="surface_min" placeholder="">
+                    <label for="surface-max" style="font-weight: bold;">Max :</label>
+                    <input type="number" id="surface-max" name="surface_max">
+                </div>
+            </div>
+            <div>
+                <label for="parking" style="font-weight: bold;">Parking</label>
+                <input type="checkbox" name="parking" id="parking">
+                <label for="ascenseur" style="font-weight: bold;">Ascenseur</label>
+                <input type="checkbox" name="ascenseur" id="ascenseur">
+                <label for="garage" style="font-weight: bold;">Garage</label>
+                <input type="checkbox" id="garage">
+            </div>
+            <div>
+                <input type="submit" value="filtrer" name="formulaire_filtre" style="width: 100%;">
+            </div>
+        </form>
     </div>
 </section>
 

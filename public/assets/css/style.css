@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Roboto&display=swap');
 
-
 /* ********************* HOME ****************** */
 
 #bien_home {
@@ -27,6 +26,20 @@
     img {
         height: 100%;
     }
+}
+
+/* Filtre home */
+
+#filtrage {
+    position: absolute;
+    top: 170px;
+    left: 0;
+    width: 250px;
+    margin: 0 10px;
+}
+
+#filtrage label {
+    margin: 10px 0;
 }
 
 /* ****************** FIN HOME **************** */

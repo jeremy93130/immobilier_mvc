@@ -9,7 +9,7 @@ use Model\Repository\BienRepository;
 
 class BienHandleRequest extends BaseHandleRequest
 {
-    private $bienRepository;
+    private BienRepository $bienRepository;
 
     private $imageTraitement;
     public function __construct()
@@ -43,9 +43,9 @@ class BienHandleRequest extends BaseHandleRequest
                 $bien->setCodePostal($code_postal);
                 $bien->setVille($ville);
                 $bien->setZone($zone);
-                $bien->setPrixVente($vente);
-                $bien->setLoyerHC($hc);
-                $bien->setLoyerCC($cc);
+                $bien->setPrixVente($vente !== null ? $vente : null);
+                $bien->setLoyerHC($hc !== null ? $hc : null);
+                $bien->setLoyerCC($cc !== null ? $cc : null);
                 $bien->setParking($parking);
                 $bien->setGarage($garage);
                 $bien->setAscenseur($ascenseur);
