@@ -1,26 +1,26 @@
 <section id="home">
-    <?php foreach ($biens as $bien): ?>
+    <?php foreach ($filtres as $filtre): ?>
         <div id="bien_home">
             <div class="img_home">
-                <img src="<?= ROOT . UPLOAD_BIENS_IMG . $bien->getImage(); ?>" alt="image-produit" class="card-img-top">
+                <img src="<?= ROOT . UPLOAD_BIENS_IMG . $filtre['image']; ?>" alt="image-produit" class="card-img-top">
             </div>
             <div>
-                <h2><?= $bien->getTitre() ?></h2>
-                <?php if ($bien->getPrixVente() !== null) { ?>
+                <h2><?= $filtre['titre'] ?></h2>
+                <?php if ($filtre['prix_vente'] !== null) { ?>
                         <p style="font-weight: bold">
-                            <?= number_format($bien->getPrixVente(), 0, ',', '.') . " €" ?></p>
-                <?php } else if ($bien->getLoyerCC() !== null) { ?>
-                            <p style="font-weight: bold"><?= $bien->getLoyerCC(); ?>
+                            <?= number_format($filtre['prix_vente'], 0, ',', '.') . " €" ?></p>
+                <?php } else if ($filtre['loyer_CC'] !== null) { ?>
+                            <p style="font-weight: bold"><?= $filtre['loyer_CC']; ?>
                                 € cc</p>
                 <?php } ?>
-                <p><?= $bien->getStyle(); ?></p>
-                <p><?= $bien->getnbPieces() . " pièces / " . $bien->getSurface() . " m² / " . $bien->getEtage() . " Étages" . ($bien->getParking() == 'oui' ? " / Parking" : "") ?></p>
+                <p><?= $filtre['style']; ?></p>
+                <p><?= $filtre['nb_pieces'] . " pièces / " . $filtre['surface'] . " m² / " . $filtre['etage'] . " Étages" . ($filtre['parking'] == 'oui' ? " / Parking" : "") ?></p>
                 <p>
-                    <a href="<?= addLink('biens', 'detailBien', $bien->getId()); ?>">En savoir plus ...</a>
+                    <a href="<?= addLink('biens', 'detailBien', $filtre['id']); ?>">En savoir plus ...</a>
                 </p>
             </div>
         </div>
-        <?php if ($bien !== end($biens)): ?>
+        <?php if ($filtre !== end($filtre)): ?>
             <hr>
         <?php endif; ?>
 

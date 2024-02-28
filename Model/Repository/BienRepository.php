@@ -87,57 +87,11 @@ class BienRepository extends BaseRepository
         }
     }
 
-    public function findByNbPieces($nb_pieces)
-    {
-        $sql = "SELECT * FROM bien WHERE nb_pieces = :nb_pieces";
-
-        $request = $this->dbConnection->prepare($sql);
-        $request->bindValue(':nb_pieces', $nb_pieces);
-
-        $success = $request->execute();
-        if ($success) {
-            $biensTrouves = $request->fetchAll(PDO::FETCH_ASSOC);
-            return $biensTrouves;
-        } else {
-            return false;
-        }
-    }
-    public function findBySurface($surface_min, $surface_max)
-    {
-        $sql = "SELECT * FROM bien WHERE 1=1";
-
-        if (!empty($surface_min)) {
-            $sql .= " AND surface >= :surface_min";
-        }
-
-        if (!empty($surface_max)) {
-            $sql .= " AND surface <= :surface_max";
-        }
-
-        $request = $this->dbConnection->prepare($sql);
-
-        if (!empty($surface_min)) {
-            $request->bindValue(':surface_min', $surface_min);
-        }
-
-        if (!empty($surface_max)) {
-            $request->bindValue(':surface_max', $surface_max);
-        }
-
-        $success = $request->execute();
-        if ($success) {
-            $biensTrouves = $request->fetchAll(PDO::FETCH_ASSOC);
-            return $biensTrouves;
-        } else {
-            return false;
-        }
-    }
-
     public function findByCriteria($nb_pieces, $surface_min, $surface_max, $parking, $garage, $ascenseur)
     {
         $sql = "SELECT * FROM bien WHERE 1=1";
 
-        if ($nb_pieces !== null) {
+        if ($nb_pieces !== null && $nb_pieces !== "") {
             $sql .= " AND nb_pieces = :nb_pieces";
         }
 
@@ -150,26 +104,25 @@ class BienRepository extends BaseRepository
         if ($ascenseur !== null) {
             $sql .= " AND ascenseur = 'oui'";
         }
-        if ($surface_min !== null) {
+        if ($surface_min !== null && $surface_min !== "") {
             $sql .= " AND surface >= :surface_min";
         }
 
-        if ($surface_max !== null) {
+        if ($surface_max !== null && $surface_max !== "") {
             $sql .= " AND surface <= :surface_max";
         }
 
         $request = $this->dbConnection->prepare($sql);
 
-        if ($nb_pieces !== null) {
+        if ($nb_pieces !== null && $nb_pieces !== "") {
             $request->bindValue(':nb_pieces', $nb_pieces);
         }
-        if ($surface_min !== null) {
+        if ($surface_min !== null && $surface_min !== "") {
             $request->bindValue(':surface_min', $surface_min);
         }
-        if ($surface_max !== null) {
+        if ($surface_max !== null && $surface_max !== "") {
             $request->bindValue(':surface_max', $surface_max);
         }
-
         $success = $request->execute();
 
         if ($success) {

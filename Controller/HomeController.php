@@ -26,17 +26,20 @@ class HomeController extends BaseController
     }
     public function list()
     {
-        $biens = $this->bienRepository->findAll($this->bien);
-
         $resultatForm = $this->formFilter->recherche();
-
         if ($resultatForm !== false) {
-            $biens = $resultatForm;
+            // Afficher les résultats du formulaire de filtre s'ils existent
+            $this->render('biens/list.filtre.html.php', [
+                'h1' => "Bien Chez Moi",
+                'filtres' => $resultatForm,
+            ]);
+        } else {
+            // Sinon, afficher la page d'accueil avec tous les biens
+            $biens = $this->bienRepository->findAll($this->bien);
+            $this->render("home.html.php", [
+                "h1" => "Bien Chez Moi",
+                "biens" => $biens
+            ]);
         }
-
-        $this->render("home.html.php", [
-            "h1" => "Bien Chez Moi",
-            "biens" => $biens
-        ]);
     }
 }
