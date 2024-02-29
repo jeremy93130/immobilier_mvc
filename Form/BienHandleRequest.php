@@ -27,10 +27,6 @@ class BienHandleRequest extends BaseHandleRequest
 
             // d_die($_POST);
 
-            // Vérification de la validité du formulaire
-            if (empty($titre)) {
-                $errors[] = "Le titre ne peut pas être vide";
-            }
 
             $this->imageTraitement->handlePhoto($bien);
 
@@ -43,11 +39,15 @@ class BienHandleRequest extends BaseHandleRequest
                 $bien->setCodePostal($code_postal);
                 $bien->setVille($ville);
                 $bien->setZone($zone);
-                $bien->setPrixVente($vente !== null ? $vente : null);
-                $bien->setLoyerHC($hc !== null ? $hc : null);
-                $bien->setLoyerCC($cc !== null ? $cc : null);
+                $bien->setPrixVente($vente !== 0 ? $vente : null);
+                $bien->setLoyerHC($hc !== 0 ? $hc : null);
+                $bien->setLoyerCC($cc !== 0 ? $cc : null);
                 $bien->setParking($parking);
                 $bien->setGarage($garage);
+                $bien->setJardin($jardin);
+                $bien->setPiscine($piscine);
+                $bien->setTerrasse($terrasse);
+                $bien->setBalcon($balcon);
                 $bien->setAscenseur($ascenseur);
                 $bien->setConsommation($consommation);
                 $bien->setEtage($etage);

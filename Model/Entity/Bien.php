@@ -15,6 +15,10 @@ class Bien extends BaseEntity
     private $style;
     private $parking;
     private $garage;
+    private $balcon;
+    private $jardin;
+    private $terrasse;
+    private $piscine;
     private $prix_vente;
     private $loyer_HC;
     private $loyer_CC;
@@ -243,5 +247,54 @@ class Bien extends BaseEntity
         return $this;
     }
 
+    public function getJardin()
+    {
+        return $this->jardin;
+    }
 
+
+    public function setJardin($jardin)
+    {
+        $this->jardin = $jardin;
+
+        return $this;
+    }
+
+    public function getBalcon()
+    {
+        return $this->balcon;
+    }
+
+    public function setBalcon($balcon)
+    {
+        $this->balcon = $balcon;
+
+        return $this;
+    }
+
+    public function getTerrasse()
+    {
+        return $this->terrasse;
+    }
+
+
+    public function setTerrasse($terrasse)
+    {
+        $this->terrasse = $terrasse;
+
+        return $this;
+    }
+
+    public function getPiscine()
+    {
+        return $this->piscine;
+    }
+
+
+    public function setPiscine($piscine)
+    {
+        $this->piscine = $piscine;
+
+        return $this;
+    }
 }

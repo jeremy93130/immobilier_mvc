@@ -20,7 +20,7 @@ class BienRepository extends BaseRepository
 
     public function insertBien(Bien $bien)
     {
-        $sql = "INSERT INTO bien (titre,description, code_postal,ville,nb_pieces,surface,style,parking,garage,prix_vente,loyer_HC,loyer_CC,consommation,zone,ascenseur,etage,image,achat_location) VALUES (:titre, :description, :code_postal, :ville, :nb_pieces, :surface, :style, :parking,:garage,:prix_vente,:loyer_HC,:loyer_CC,:consommation,:zone,:ascenseur,:etage,:image,:achat_location)";
+        $sql = "INSERT INTO bien (titre,description, code_postal,ville,nb_pieces,surface,style,parking,garage,prix_vente,loyer_HC,loyer_CC,consommation,zone,ascenseur,jardin,terrasse,balcon,piscine,etage,image,achat_location) VALUES (:titre, :description, :code_postal, :ville, :nb_pieces, :surface, :style, :parking,:garage,:prix_vente,:loyer_HC,:loyer_CC,:consommation,:zone,:ascenseur,:jardin,:terrasse,:balcon,:piscine,:etage,:image,:achat_location)";
         $request = $this->dbConnection->prepare($sql);
         $request->bindValue(":titre", $bien->getTitre());
         $request->bindValue(":description", $bien->getDescription());
@@ -31,6 +31,10 @@ class BienRepository extends BaseRepository
         $request->bindValue(":style", $bien->getStyle());
         $request->bindValue(":parking", $bien->getParking());
         $request->bindValue(":garage", $bien->getGarage());
+        $request->bindValue(":jardin", $bien->getJardin());
+        $request->bindValue(":terrasse", $bien->getTerrasse());
+        $request->bindValue(":balcon", $bien->getBalcon());
+        $request->bindValue(":piscine", $bien->getPiscine());
         $request->bindValue(":prix_vente", $bien->getPrixVente());
         $request->bindValue(":loyer_HC", $bien->getLoyerHC());
         $request->bindValue(":loyer_CC", $bien->getLoyerCC());
@@ -55,7 +59,7 @@ class BienRepository extends BaseRepository
     public function updateBien(Bien $bien)
     {
         $sql = "UPDATE bien 
-                SET titre = :titre, description = :description, code_postal = :codePostal, ville = :ville, nb_pieces = :nbPieces,surface= :surface, style = :style, parking = :parking,garage = :garage, prix_vente = :prixVente,loyer_HC = :loyerHC, loyer_CC = :loyer_CC,consommation = :consommation, zone = :zone,ascenseur = :ascenseur, etage = :etage, image = :image, achat_location = :achat_location
+                SET titre = :titre, description = :description, code_postal = :codePostal, ville = :ville, nb_pieces = :nbPieces,surface= :surface, style = :style, parking = :parking,garage = :garage, prix_vente = :prixVente,loyer_HC = :loyerHC, loyer_CC = :loyer_CC,consommation = :consommation, zone = :zone,ascenseur = :ascenseur,jardin = :jardin, terrasse = :terrasse, balcon = :balcon, piscine = :piscine, etage = :etage, image = :image, achat_location = :achat_location
                 WHERE id = :id";
         $request = $this->dbConnection->prepare($sql);
         $request->bindValue(":id", $bien->getId());
@@ -74,6 +78,10 @@ class BienRepository extends BaseRepository
         $request->bindValue(":consommation", $bien->getConsommation());
         $request->bindValue(":zone", $bien->getZone());
         $request->bindValue(":ascenseur", $bien->getAscenseur());
+        $request->bindValue(":jardin", $bien->getJardin());
+        $request->bindValue(":terrasse", $bien->getTerrasse());
+        $request->bindValue(":balcon", $bien->getBalcon());
+        $request->bindValue(":piscine", $bien->getPiscine());
         $request->bindValue(":etage", $bien->getEtage());
         $request->bindValue(":image", $bien->getImage());
         $request->bindValue(":achat_location", $bien->getAchatLocation());
@@ -87,7 +95,7 @@ class BienRepository extends BaseRepository
         }
     }
 
-    public function findByCriteria($nb_pieces, $surface_min, $surface_max, $parking, $garage, $ascenseur)
+    public function findByCriteria($nb_pieces, $surface_min, $surface_max, $parking, $garage, $ascenseur, $jardin, $terrasse, $balcon, $piscine)
     {
         $sql = "SELECT * FROM bien WHERE 1=1";
 
@@ -103,6 +111,18 @@ class BienRepository extends BaseRepository
         }
         if ($ascenseur !== null) {
             $sql .= " AND ascenseur = 'oui'";
+        }
+        if ($jardin !== null) {
+            $sql .= " AND jardin = 'oui'";
+        }
+        if ($terrasse !== null) {
+            $sql .= " AND terrasse = 'oui'";
+        }
+        if ($balcon !== null) {
+            $sql .= " AND balcon = 'oui'";
+        }
+        if ($piscine !== null) {
+            $sql .= " AND piscine = 'oui'";
         }
         if ($surface_min !== null && $surface_min !== "") {
             $sql .= " AND surface >= :surface_min";
@@ -129,6 +149,7 @@ class BienRepository extends BaseRepository
             $données = $request->fetchAll(PDO::FETCH_ASSOC);
             return $données;
         } else {
+            var_dump($request->errorInfo());
             return false;
         }
     }

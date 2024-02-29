@@ -1,4 +1,4 @@
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" id="ajout_bien_admin">
     <div>
         <label for="titre">Titre du bien :</label>
         <input type="text" id="titre" name="titre">
@@ -69,6 +69,26 @@
         </select>
     </div>
     <div>
+        <label for="balcon">Balcon</label>
+        <select name="balcon" id="balcon">
+            <option value="oui">oui</option>
+            <option value="non">non</option>
+        </select>
+
+
+        <label for="terrasse">Terrasse</label>
+        <select name="terrasse" id="terrasse">
+            <option value="oui">oui</option>
+            <option value="non">non</option>
+        </select>
+
+        <label for="jardin">Jardin</label>
+        <select name="jardin" id="jardin">
+            <option value="oui">oui</option>
+            <option value="non">non</option>
+        </select>
+    </div>
+    <div>
         <label for="consommation">Consommation Energetique</label>
         <select name="consommation" id="consommation">
             <option value="A">A</option>
@@ -102,4 +122,3 @@
         <input type="submit" value="Enregistrer" name="ajout_bien">
     </div>
 </form>
-

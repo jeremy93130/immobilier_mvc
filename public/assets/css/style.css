@@ -1,5 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Roboto&display=swap');
 
+/* Parties Admin */
+#ajout_bien_admin {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 750px;
+}
+
+#ajout_bien_admin>div:nth-child(2) {
+    display: flex;
+    align-items: center;
+}
+
+#ajout_bien_admin>div {
+    margin: 20px;
+}
+
+
+
 /* ********************* HOME ****************** */
 
 #bien_home {
