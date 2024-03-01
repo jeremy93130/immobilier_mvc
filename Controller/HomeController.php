@@ -27,9 +27,9 @@ class HomeController extends BaseController
     public function list()
     {
         $resultatForm = $this->formFilter->recherche();
-
         if ($resultatForm !== false) {
             // Afficher les résultats du formulaire de filtre s'ils existent
+            // d_die($resultatForm);
             echo json_encode($resultatForm);
         } else {
             // Sinon, afficher la page d'accueil avec tous les biens

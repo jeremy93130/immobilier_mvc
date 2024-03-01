@@ -1,5 +1,3 @@
-<?php var_dump($_POST); ?>
-
 <section id="home">
     <?php foreach ($biens as $bien): ?>
         <div id="bien_home">
@@ -11,14 +9,14 @@
                     <?= $bien->getTitre() ?>
                 </h2>
                 <?php if ($bien->getPrixVente() !== null) { ?>
-                    <p style="font-weight: bold">
-                        <?= number_format($bien->getPrixVente(), 0, ',', '.') . " €" ?>
-                    </p>
-                <?php } else if ($bien->getLoyerCC() !== null) { ?>
                         <p style="font-weight: bold">
-                        <?= $bien->getLoyerCC(); ?>
-                            € cc
+                            <?= number_format($bien->getPrixVente(), 0, ',', '.') . " €" ?>
                         </p>
+                <?php } else if ($bien->getLoyerCC() !== null) { ?>
+                            <p style="font-weight: bold">
+                            <?= $bien->getLoyerCC(); ?>
+                                € cc
+                            </p>
                 <?php } ?>
                 <p>
                     <?= $bien->getStyle(); ?>
@@ -37,9 +35,11 @@
 
     <?php endforeach; ?>
 
-    <div id="filtrage">
-        <h3>Filtrer par :
-        </h3>
+</section>
+<section id="filtrage">
+    <h3>Filtrer par :
+    </h3>
+    <form id="formulaire_filtre">
         <div>
             <label for="nb_pieces" style="font-weight: bold;">Nombre de pièces :</label>
             <input type="number" id="nb_pieces" name="nb_pieces">
@@ -48,9 +48,9 @@
             <label for="surface" style="font-weight: bold;">Quelle surface habitable ?
             </label>
             <div>
-                <label for="surface-min" style="font-weight: bold;">Min :</label>
+                <label for="surface_min" style="font-weight: bold;">Min :</label>
                 <input type="number" id="surface_min" name="surface_min" placeholder="">
-                <label for="surface-max" style="font-weight: bold;">Max :</label>
+                <label for="surface_max" style="font-weight: bold;">Max :</label>
                 <input type="number" id="surface_max" name="surface_max">
             </div>
         </div>
@@ -77,7 +77,8 @@
             </div>
         </div>
         <div>
-            <input type="submit" id="submit_filtre" value="filtrer" style="width: 100%;">
+            <input type="submit" id="submit_filtre" name="submit_filtre" value="filtrer" style="width: 100%;">
         </div>
-    </div>
+    </form>
 </section>
+

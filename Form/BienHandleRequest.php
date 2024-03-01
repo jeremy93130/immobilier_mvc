@@ -24,10 +24,6 @@ class BienHandleRequest extends BaseHandleRequest
 
             extract($_POST);
             $errors = [];
-
-            // d_die($_POST);
-
-
             $this->imageTraitement->handlePhoto($bien);
 
             if (empty($errors)) {

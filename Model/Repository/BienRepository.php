@@ -99,48 +99,48 @@ class BienRepository extends BaseRepository
     {
         $sql = "SELECT * FROM bien WHERE 1=1";
 
-        if ($nb_pieces !== null && $nb_pieces !== "") {
+        if ($nb_pieces !== "") {
             $sql .= " AND nb_pieces = :nb_pieces";
         }
 
-        if ($parking !== null) {
+        if ($parking !== false) {
             $sql .= " AND parking = 'oui'";
         }
-        if ($garage !== null) {
+        if ($garage !== false) {
             $sql .= " AND garage = 'oui'";
         }
-        if ($ascenseur !== null) {
+        if ($ascenseur !== false) {
             $sql .= " AND ascenseur = 'oui'";
         }
-        if ($jardin !== null) {
+        if ($jardin !== false) {
             $sql .= " AND jardin = 'oui'";
         }
-        if ($terrasse !== null) {
+        if ($terrasse !== false) {
             $sql .= " AND terrasse = 'oui'";
         }
-        if ($balcon !== null) {
+        if ($balcon !== false) {
             $sql .= " AND balcon = 'oui'";
         }
-        if ($piscine !== null) {
+        if ($piscine !== false) {
             $sql .= " AND piscine = 'oui'";
         }
-        if ($surface_min !== null && $surface_min !== "") {
+        if ($surface_min !== "") {
             $sql .= " AND surface >= :surface_min";
         }
 
-        if ($surface_max !== null && $surface_max !== "") {
+        if ($surface_max !== "") {
             $sql .= " AND surface <= :surface_max";
         }
 
         $request = $this->dbConnection->prepare($sql);
 
-        if ($nb_pieces !== null && $nb_pieces !== "") {
+        if ($nb_pieces !== "") {
             $request->bindValue(':nb_pieces', $nb_pieces);
         }
-        if ($surface_min !== null && $surface_min !== "") {
+        if ($surface_min !== "") {
             $request->bindValue(':surface_min', $surface_min);
         }
-        if ($surface_max !== null && $surface_max !== "") {
+        if ($surface_max !== "") {
             $request->bindValue(':surface_max', $surface_max);
         }
         $success = $request->execute();
