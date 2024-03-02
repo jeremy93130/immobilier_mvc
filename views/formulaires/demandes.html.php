@@ -7,13 +7,15 @@
                 <input type="text" name="nom_postulant" id="nom_postulant">
             </div>
             <div>
-                <label for="prenom_postulant">prenom</label>
+                <label for="prenom_postulant">Prenom</label>
                 <input type="text">
             </div>
         </div>
         <div></div>
         <div>
-            <label for="">Nom</label>
+            <label for="profession">Profession</label>
+            <input type="text">
+            <label for="salaire">Salaire</label>
             <input type="text">
         </div>
     </form>

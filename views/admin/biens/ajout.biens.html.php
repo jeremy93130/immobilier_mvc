@@ -62,6 +62,26 @@
             <option value="oui">oui</option>
             <option value="non">non</option>
         </select>
+        <label for="balcon">Balcon ?</label>
+        <select name="balcon" id="balcon">
+            <option value="oui">oui</option>
+            <option value="non">non</option>
+        </select>
+        <label for="terrasse">Terrasse ?</label>
+        <select name="terrasse" id="terrasse">
+            <option value="oui">oui</option>
+            <option value="non">non</option>
+        </select>
+        <label for="jardin">Jardin ?</label>
+        <select name="jardin" id="jardin">
+            <option value="oui">oui</option>
+            <option value="non">non</option>
+        </select>
+        <label for="piscine">Piscine ?</label>
+        <select name="piscine" id="piscine">
+            <option value="oui">oui</option>
+            <option value="non">non</option>
+        </select>
         <label for="ascenseur">Ascenseur ?</label>
         <select name="ascenseur" id="ascenseur">
             <option value="oui">oui</option>

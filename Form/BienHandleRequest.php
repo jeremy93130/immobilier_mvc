@@ -21,7 +21,7 @@ class BienHandleRequest extends BaseHandleRequest
     public function handleInsertFormBien(Bien $bien)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajout_bien'])) {
-
+            // d_die($_POST);
             extract($_POST);
             $errors = [];
             $this->imageTraitement->handlePhoto($bien);
@@ -35,9 +35,9 @@ class BienHandleRequest extends BaseHandleRequest
                 $bien->setCodePostal($code_postal);
                 $bien->setVille($ville);
                 $bien->setZone($zone);
-                $bien->setPrixVente($vente !== 0 ? $vente : null);
-                $bien->setLoyerHC($hc !== 0 ? $hc : null);
-                $bien->setLoyerCC($cc !== 0 ? $cc : null);
+                $bien->setPrixVente($vente !== '' ? $vente : null);
+                $bien->setLoyerHC($hc !== '' ? $hc : null);
+                $bien->setLoyerCC($cc !== '' ? $cc : null);
                 $bien->setParking($parking);
                 $bien->setGarage($garage);
                 $bien->setJardin($jardin);
@@ -53,7 +53,6 @@ class BienHandleRequest extends BaseHandleRequest
             $this->setErrorsForm($errors);
             return $this;
         }
-
     }
 
     public function handleEditForm($bien)

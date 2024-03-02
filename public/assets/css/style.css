@@ -2,15 +2,15 @@
 
 /* Parties Admin */
 #ajout_bien_admin {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    display        : flex;
+    flex-wrap      : wrap;
+    align-items    : center;
     justify-content: center;
-    width: 750px;
+    width          : 750px;
 }
 
 #ajout_bien_admin>div:nth-child(2) {
-    display: flex;
+    display    : flex;
     align-items: center;
 }
 
@@ -21,23 +21,28 @@
 
 
 /* ********************* HOME ****************** */
+#home_section {
+    display        : flex;
+    justify-content: space-between;
+}
+
 
 #bien_home {
-    display: flex;
+    display        : flex;
     justify-content: space-between;
-    margin-bottom: 30px;
+    margin-bottom  : 30px;
 }
 
 #bien_home>div:first-child {
-    width: 40%;
+    width: 50%;
 }
 
 #bien_home>div:last-child {
-    display: flex;
-    flex-direction: column;
+    display        : flex;
+    flex-direction : column;
     justify-content: center;
-    width: 50%;
-    text-align: right;
+    width          : 50%;
+    text-align     : right;
 }
 
 .img_home {
@@ -49,17 +54,16 @@
 }
 
 /* Filtre home */
-
 #filtrage {
-    position: absolute;
-    top: 170px;
-    left: 0;
-    width: 250px;
-    margin: 0 10px;
+    width: 25%;
 }
 
 #filtrage label {
     margin: 10px 0;
+}
+
+#filtrage input[type='number'] {
+    width: 100px;
 }
 
 /* ****************** FIN HOME **************** */
@@ -70,7 +74,7 @@ i {
 }
 
 #detail_bien {
-    display: flex;
+    display        : flex;
     justify-content: space-between;
 
     h1 {
@@ -83,8 +87,8 @@ i {
 }
 
 #contact_agence_detail>div:first-child {
-    display: flex;
-    align-items: center;
+    display        : flex;
+    align-items    : center;
     justify-content: space-between;
 
     div {
@@ -94,8 +98,8 @@ i {
 
     h2 {
         font-family: "Merienda";
-        font-size: 19px;
-        margin: 0;
+        font-size  : 19px;
+        margin     : 0;
     }
 
     img {
