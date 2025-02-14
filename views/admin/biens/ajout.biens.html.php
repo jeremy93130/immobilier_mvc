@@ -1,3 +1,4 @@
+<h2>Formulaire d'ajout de bien à acheter/louer</h2>
 <form method="post" enctype="multipart/form-data" id="ajout_bien_admin">
     <div>
         <label for="titre">Titre du bien :</label>
@@ -29,8 +30,12 @@
     <div>
         <label for="zone">Code Postal :</label>
         <input type="number" id="zone" name="code_postal">
+    </div>
+    <div>
         <label for="ville">Ville :</label>
         <input type="text" id="ville" name="ville">
+    </div>
+    <div>
         <label for="zone">Zone :</label>
         <select name="zone" id="zone">
             <option value="urbaine">Urbaine</option>
@@ -57,31 +62,43 @@
             <option value="oui">oui</option>
             <option value="non">non</option>
         </select>
+    </div>
+    <div>
         <label for="garage">Garage ?</label>
         <select name="garage" id="garage">
             <option value="oui">oui</option>
             <option value="non">non</option>
         </select>
+    </div>
+    <div>
         <label for="balcon">Balcon ?</label>
         <select name="balcon" id="balcon">
             <option value="oui">oui</option>
             <option value="non">non</option>
         </select>
+    </div>
+    <div>
         <label for="terrasse">Terrasse ?</label>
         <select name="terrasse" id="terrasse">
             <option value="oui">oui</option>
             <option value="non">non</option>
         </select>
+    </div>
+    <div>
         <label for="jardin">Jardin ?</label>
         <select name="jardin" id="jardin">
             <option value="oui">oui</option>
             <option value="non">non</option>
         </select>
+    </div>
+    <div>
         <label for="piscine">Piscine ?</label>
         <select name="piscine" id="piscine">
             <option value="oui">oui</option>
             <option value="non">non</option>
         </select>
+    </div>
+    <div>
         <label for="ascenseur">Ascenseur ?</label>
         <select name="ascenseur" id="ascenseur">
             <option value="oui">oui</option>
@@ -95,13 +112,15 @@
             <option value="non">non</option>
         </select>
 
-
+    </div>
+    <div>
         <label for="terrasse">Terrasse</label>
         <select name="terrasse" id="terrasse">
             <option value="oui">oui</option>
             <option value="non">non</option>
         </select>
-
+    </div>
+    <div>
         <label for="jardin">Jardin</label>
         <select name="jardin" id="jardin">
             <option value="oui">oui</option>

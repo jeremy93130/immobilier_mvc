@@ -49,6 +49,12 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="<?= addLink('admin/bien','message'); ?>">
+                                <i class="fa-solid fa-envelope"></i>
+                            </a>
+                            <?php if(!empty($admin_message)) ?>
+                        </li>
                     <?php endif; ?>
 
                 <?php else : ?>
